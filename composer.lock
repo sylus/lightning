@@ -4,9 +4,33 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4cf5ab17d49e8145c33fb76864310d92",
-    "content-hash": "5bbf71918240734c81dd66fa7b34f7f2",
+    "hash": "27282fe6ff1762eb4a546aab49e2d2ea",
+    "content-hash": "1eb5f96a9ce6cd46867c007ad6752af9",
     "packages": [
+        {
+            "name": "balsama/decoupled_blocks",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/balsama/decoupled_blocks.git",
+                "reference": "d261adfd8dfd594fdd119a7d5f904cbe085716cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/balsama/decoupled_blocks/zipball/d261adfd8dfd594fdd119a7d5f904cbe085716cc",
+                "reference": "d261adfd8dfd594fdd119a7d5f904cbe085716cc",
+                "shasum": ""
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Progressively Decoupled Blocks (PDB). Build stuff with javascript frameworks as blocks.",
+            "support": {
+                "source": "https://github.com/balsama/decoupled_blocks/tree/8.x-1.x"
+            },
+            "time": "2016-04-27 14:33:49"
+        },
         {
             "name": "codegyre/robo",
             "version": "0.7.2",
@@ -1780,12 +1804,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/drush-ops/drush.git",
-                "reference": "5f5f9cf405ca131eb1f8341f76a8b429d002329e"
+                "reference": "1860a8de960b872f8282282197259b35850402df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drush-ops/drush/zipball/5f5f9cf405ca131eb1f8341f76a8b429d002329e",
-                "reference": "5f5f9cf405ca131eb1f8341f76a8b429d002329e",
+                "url": "https://api.github.com/repos/drush-ops/drush/zipball/1860a8de960b872f8282282197259b35850402df",
+                "reference": "1860a8de960b872f8282282197259b35850402df",
                 "shasum": ""
             },
             "require": {
@@ -1875,7 +1899,7 @@
             ],
             "description": "Drush is a command line shell and scripting interface for Drupal, a veritable Swiss Army knife designed to make life easier for those of us who spend some of our working hours hacking away at the command prompt.",
             "homepage": "http://www.drush.org",
-            "time": "2016-04-16 16:51:13"
+            "time": "2016-04-21 20:00:28"
         },
         {
             "name": "easyrdf/easyrdf",
@@ -5917,7 +5941,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "cweagans/composer-patches": 20,
-        "drush/drush": 20
+        "drush/drush": 20,
+        "balsama/decoupled_blocks": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

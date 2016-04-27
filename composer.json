@@ -22,7 +22,7 @@
         },
         {
             "type": "vcs",
-            "url": "https://github.com/balsama/decoupled_blocks"
+            "url": "https://github.com/mrjmd/decoupled_blocks"
         }
     ],
     "scripts": {
@@ -100,6 +100,6 @@
         "drupal-composer/drupal-scaffold": "^1.2",
         "drush/drush": "dev-master",
         "drupal/pathauto": "^8.1.0",
-        "balsama/decoupled_blocks": "dev-8.x-1.x"
+        "mrjmd/decoupled_blocks": "dev-8.x-1.x"
     }
 }

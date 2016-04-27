@@ -4,33 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "27282fe6ff1762eb4a546aab49e2d2ea",
-    "content-hash": "1eb5f96a9ce6cd46867c007ad6752af9",
+    "hash": "c6622bd81422a3ed389ada015451c4bb",
+    "content-hash": "56dc6a7c910da5c61e4a1dd307b280fc",
     "packages": [
-        {
-            "name": "balsama/decoupled_blocks",
-            "version": "dev-8.x-1.x",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/balsama/decoupled_blocks.git",
-                "reference": "d261adfd8dfd594fdd119a7d5f904cbe085716cc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/balsama/decoupled_blocks/zipball/d261adfd8dfd594fdd119a7d5f904cbe085716cc",
-                "reference": "d261adfd8dfd594fdd119a7d5f904cbe085716cc",
-                "shasum": ""
-            },
-            "type": "drupal-module",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "description": "Progressively Decoupled Blocks (PDB). Build stuff with javascript frameworks as blocks.",
-            "support": {
-                "source": "https://github.com/balsama/decoupled_blocks/tree/8.x-1.x"
-            },
-            "time": "2016-04-27 14:33:49"
-        },
         {
             "name": "codegyre/robo",
             "version": "0.7.2",
@@ -2553,6 +2529,31 @@
                 "xml"
             ],
             "time": "2016-04-11 13:54:57"
+        },
+        {
+            "name": "mrjmd/decoupled_blocks",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mrjmd/decoupled_blocks.git",
+                "reference": "6320a02a36dab7bdd0ecf281058108d34771121f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mrjmd/decoupled_blocks/zipball/6320a02a36dab7bdd0ecf281058108d34771121f",
+                "reference": "6320a02a36dab7bdd0ecf281058108d34771121f",
+                "shasum": ""
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Progressively Decoupled Blocks (PDB). Build stuff with javascript frameworks as blocks.",
+            "support": {
+                "source": "https://github.com/mrjmd/decoupled_blocks/tree/8.x-1.x",
+                "issues": "https://github.com/mrjmd/decoupled_blocks/issues"
+            },
+            "time": "2016-04-27 19:05:01"
         },
         {
             "name": "nikic/php-parser",
@@ -5942,7 +5943,7 @@
     "stability-flags": {
         "cweagans/composer-patches": 20,
         "drush/drush": 20,
-        "balsama/decoupled_blocks": 20
+        "mrjmd/decoupled_blocks": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

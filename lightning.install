@@ -6,8 +6,6 @@
  * profile.
  */
 
-use Drupal\Core\Config\FileStorage;
-use Drupal\Core\Config\InstallStorage;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\node\Entity\NodeType;
@@ -466,28 +464,6 @@ function lightning_install() {
 }
 
 /**
- * Reads a stored config file from a module's config/install directory.
- *
- * @param string $id
- *   The config ID.
- * @param string $module
- *   (optional) The module to search. Defaults to 'lightning' (not technically
- *   a module, but profiles are treated like modules by the install system).
- *
- * @return array
- *   The config data.
- */
-function lightning_read_config($id, $module = 'lightning') {
-  // Keep the FileStorage in case we need it.
-  static $storage;
-  if (empty($storage)) {
-    $dir = \Drupal::service('module_handler')->getModule($module)->getPath();
-    $storage = new FileStorage($dir . '/' . InstallStorage::CONFIG_INSTALL_DIRECTORY);
-  }
-  return $storage->read($id);
-}
-
-/**
  * Install the body field on the basic block_content type, delete the Create
  * landing page shortcut, and uninstall the Media Demo Content Module.
  */
@@ -523,7 +499,7 @@ function lightning_update_8001() {
   }
 
   // Uninstall the Media Demo Content module.
-  \Drupal::service('module_installer')->uninstall(array('lightning_media_democontent'));
+  \Drupal::service('module_installer')->uninstall(['lightning_media_democontent']);
 }
 
 /**
@@ -533,4 +509,11 @@ function lightning_update_8002() {
   foreach (NodeType::loadMultiple() as $node_type) {
     lightning_node_type_insert($node_type);
   }
+}
+
+/**
+ * Enables the lightning_core module.
+ */
+function lightning_update_8003() {
+  \Drupal::service('module_installer')->install(['lightning_core']);
 }

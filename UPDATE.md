@@ -12,27 +12,37 @@ cases, Lightning will attempt to safely update configuration that it depends on
 Otherwise, Lightning will leave your configuration alone, respecting the fact
 that your site owns it. So, to bring your site fully up-to-date with the latest
 default configuration, you must follow the appropriate set(s) of instructions in
-the "Version-specific updates" section of this file.
+the "Manual update steps" section of this file.
 
 ## Updating Lightning
 
-**NEVER use ```drush pm-update``` to update Lightning!!** Lightning includes
-specific, vetted, pre-tested versions of modules, and occasionally patches for
-those modules (and Drupal core). ```drush pm-update``` will totally disregard
-all of that and may break your site.
+### Composer
+If you've installed Lightning using our [Composer-based project template](https://github.com/acquia/lightning-project), all you need to do is:
+
+* ```cd /path/to/YOUR_PROJECT```
+* ```composer update```
+* Run ```drush updatedb``` or visit ```update.php``` to perform automatic database updates.
+* Perform any necessary manual updates (see below).
+
+### Tarball
+**Do not use ```drush pm-update``` or ```drush up``` to update Lightning!**
+Lightning includes specific, vetted, pre-tested versions of modules, and
+occasionally patches for those modules (and Drupal core). Drush's updater
+totally disregards all of that and may therefore break your site.
 
 To update Lightning safely:
 
 1. Download the latest version of Lightning from
    https://www.drupal.org/project/lightning and extract it.
-2. In your Lightning site, delete the entire ```profiles/lightning``` directory.
-3. Copy the ```profiles/lightning``` directory from your freshly downloaded
-   version of Lightning into your site.
-4. Visit ```update.php``` or run ```drush updb``` to perform any necessary
+2. Replace your ```profiles/lightning``` directory with the one included in the
+   fresh copy of Lightning.
+3. Replace your ```core``` directory with the one included in the fresh copy
+   Lightning.
+4. Visit ```update.php``` or run ```drush updatedb``` to perform any necessary
    database updates.
-5. Perform any necessary manual version-specific updates (see below).
+5. Perform any necessary manual updates (see below).
 
-## Version-specific updates
+## Manual update steps
 
 These instructions describe how to update your site's configuration to bring
 it in line with a newer version of Lightning. These changes are never made
@@ -44,11 +54,34 @@ use. For example, if you are currently running Beta 1 and are trying to update
 to Beta 3, you will need to follow the instructions for updating from Beta 1 to
 Beta 2, then from Beta 2 to Beta 3, in that order.
 
+### RC3 to RC4
+* Add ```<br>``` to the Rich Text filter format's list of allowed HTML tags.
+
+### RC2 to RC3
+There are no manual update steps for this version.
+
+### RC1 to RC2
+There are no manual update steps for this version.
+
+### Beta 5 to RC1
+There are no manual update steps for this version.
+
+### Beta 4 to Beta 5
+* Scheduled updates which change several pieces of content at once were broken.
+  The fix is a change to configuration that is owned by the site, so Lightning
+  does not attempt to make the change automatically. To implement the fix
+  manually:
+  * Go to *Configuration > Scheduled Updates Overview > Scheduled Update Types*
+  * Edit the **Publish multiple nodes at a certain time** update type
+  * Under "Update Runner Settings", select **Default** from the "Update Runner"
+    field
+  * Select every content type listed in the "Content type" field
+  * Press Save
+
 ### Beta 3 to Beta 4
-Beta 4 is a Drupal Core update only release. There are no changes to Lightning.
+There are no manual update steps for this version.
 
 ### Beta 2 to Beta 3
-
 * Scheduled updates to content are broken by Lightning's content moderation
   functionality. Beta 3 includes a workaround out-of-the-box which is NOT
   applied by the update. To implement the fix manually:
@@ -61,7 +94,6 @@ Beta 4 is a Drupal Core update only release. There are no changes to Lightning.
   * Press Save
 
 ### Beta 1 to Beta 2
-
 * Enable the ```view media``` permission for the ```anonymous``` and
   ```authenticated``` user roles.
 * Install the Lightning Workflow module.

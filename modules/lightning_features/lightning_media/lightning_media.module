@@ -1,10 +1,49 @@
 <?php
 
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\media_entity\MediaBundleInterface;
 use Drupal\services\ServiceEndpointInterface;
 use Drupal\views\ViewEntityInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ */
+function lightning_media_media_bundle_insert(MediaBundleInterface $bundle) {
+  /** @var \Drupal\field\Entity\FieldConfig $field */
+  $field = FieldConfig::create([
+    'field_name' => 'field_media_in_library',
+    'entity_type' => 'media',
+    'bundle' => $bundle->id(),
+  ]);
+
+  $t = \Drupal::translation();
+  $field
+    ->setSetting('on_label', $t->translate('Saved to my media library'))
+    ->setSetting('off_label', $t->translate('Not in my media library'))
+    ->setLabel($t->translate('Save to my media library'))
+    ->setDefaultValue(TRUE)
+    ->save();
+
+  $form_display = EntityFormDisplay::load('media.' . $bundle->id() . '.default');
+  if (empty($form_display)) {
+    $form_display = EntityFormDisplay::create([
+      'targetEntityType' => 'media',
+      'bundle' => $bundle->id(),
+      'mode' => 'default',
+      'status' => TRUE,
+    ]);
+  }
+  $form_display->setComponent('field_media_in_library', [
+    'type' => 'boolean_checkbox',
+    'settings' => [
+      'display_label' => TRUE,
+    ],
+  ])->save();
+}
 
 /**
  * Implements hook_ENTITY_TYPE_access().
@@ -63,3 +102,27 @@ function lightning_media_form_entity_embed_dialog_alter(array &$form, FormStateI
     $form['attributes']['data-entity-embed-display']['#access'] = FALSE;
   }
 }
+
+/**
+ * Implements hook_editor_js_settings_alter().
+ *
+ * Merge the buttons in our media library into DrupalEntity_buttons.
+ *
+ * We cannot do this in \Drupal\lightning_media\Plugin\CKEditorPlugin\MediaLibrary::getConfig
+ * because \Drupal\ckeditor\Plugin\Editor\CKEditor::getJSSettings does not merge settings keys.
+ * Entity Embed sets DrupalEntity_buttons key first so ours will not be set.
+ */
+function lightning_media_editor_js_settings_alter(array &$settings) {
+  if (isset($settings['editor']['formats'])) {
+    foreach ($settings['editor']['formats'] as &$format) {
+      $editor_setitngs = &$format['editorSettings'];
+      if (isset($editor_setitngs['mediaLibrary']['buttons'])) {
+        if (!isset($editor_setitngs['DrupalEntity_buttons'])) {
+          $editor_setitngs['DrupalEntity_buttons'] = [];
+        }
+        $editor_setitngs['DrupalEntity_buttons'] += $editor_setitngs['mediaLibrary']['buttons'];
+      }
+    }
+  }
+}
+

@@ -6,52 +6,15 @@
  * form.
  */
 
+use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Config\InstallStorage;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\node\NodeTypeInterface;
-use Drupal\user\Entity\Role;
 
 /**
- * Implements hook_ENTITY_TYPE_insert().
+ * Implements template_preprocess_block().
  */
-function lightning_node_type_insert(NodeTypeInterface $node_type) {
-  Role::create([
-    'id' => $node_type->id() . '_creator',
-    'label' => t('@type Creator', [
-      '@type' => $node_type->label(),
-    ]),
-    'permissions' => [
-      'create ' . $node_type->id() . ' content',
-      'edit own ' . $node_type->id() . ' content',
-      'view ' . $node_type->id() . ' revisions',
-      'view own unpublished content',
-      'create url aliases',
-    ],
-  ])->save();
-
-  Role::create([
-    'id' => $node_type->id() . '_reviewer',
-    'label' => t('@type Reviewer', [
-      '@type' => $node_type->label(),
-    ]),
-    'permissions' => [
-      // @TODO
-    ],
-  ])->save();
-}
-
-/**
- * Implements hook_ENTITY_TYPE_delete().
- */
-function lightning_node_type_delete(NodeTypeInterface $node_type) {
-  $role = Role::load($node_type->id() . '_creator');
-  if ($role) {
-    $role->delete();
-  }
-
-  $role = Role::load($node_type->id() . '_reviewer');
-  if ($role) {
-    $role->delete();
-  }
+function lightning_preprocess_block(array &$variables) {
+  $variables['attributes']['data-block-plugin-id'] = $variables['elements']['#plugin_id'];
 }
 
 /**
@@ -105,4 +68,27 @@ function lightning_extensions_enable($form_id, FormStateInterface $form_state) {
     }
     \Drupal::service('module_installer')->install($features);
   }
+}
+
+/**
+ * Reads a stored config file from a module's config/install directory.
+ *
+ * @param string $id
+ *   The config ID.
+ * @param string $module
+ *   (optional) The module to search. Defaults to 'lightning' (not technically
+ *   a module, but profiles are treated like modules by the install system).
+ *
+ * @return array
+ *   The config data.
+ */
+function lightning_read_config($id, $module = 'lightning') {
+  // Statically cache all FileStorage objects, keyed by module.
+  static $storage = [];
+
+  if (empty($storage[$module])) {
+    $dir = \Drupal::service('module_handler')->getModule($module)->getPath();
+    $storage[$module] = new FileStorage($dir . '/' . InstallStorage::CONFIG_INSTALL_DIRECTORY);
+  }
+  return $storage[$module]->read($id);
 }

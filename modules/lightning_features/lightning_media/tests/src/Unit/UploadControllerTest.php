@@ -1,10 +1,4 @@
 <?php
-
-/**
- * @file
- * Contains \Drupal\Tests\lightning_media\Unit\UploadControllerTest.
- */
-
 namespace Drupal\Tests\lightning_media\Unit;
 
 use Drupal\Component\Transliteration\TransliterationInterface;
@@ -19,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @coversDefaultClass \Drupal\lightning_media\Controller\UploadController
- * @package lightning_media
+ * @group lightning_media
  */
 class UploadControllerTest extends UnitTestCase {
 

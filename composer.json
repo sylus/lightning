@@ -95,6 +95,7 @@
         "drupal/services": "8.4.0-alpha3",
         "drupal-composer/drupal-scaffold": "^1.2",
         "drush/drush": "dev-master",
-        "drupal/pathauto": "^8.1.0"
+        "drupal/pathauto": "^8.1.0",
+        "drupal/multiversion": "^8.1.0"
     }
 }

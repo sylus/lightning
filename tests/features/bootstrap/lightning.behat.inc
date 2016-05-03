@@ -328,7 +328,7 @@ class LightningSubContext extends DrupalSubContextBase implements DrupalSubConte
    * @param string $when
    *   When the update should run, in the form of YYYY-MM-DD HH:MM:SS.
    *
-   * @When I schedule the nodeg to be :to_state at :when
+   * @When I schedule the node to be :to_state at :when
    */
   public function scheduleUpdate($to_state, $when) {
     $this->minkContext->pressButton('Add new scheduled update');

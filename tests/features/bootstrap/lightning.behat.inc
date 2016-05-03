@@ -331,7 +331,7 @@ class LightningSubContext extends DrupalSubContextBase implements DrupalSubConte
    * @When I schedule the node to be :to_state at :when
    */
   public function scheduleUpdate($to_state, $when) {
-    $this->minkContext->pressButton('Add scheduled update');
+    $this->minkContext->pressButton('Add new scheduled update');
     $this->minkContext->iWaitForAjaxToFinish();
 
     list ($date, $time) = explode(' ', $when);

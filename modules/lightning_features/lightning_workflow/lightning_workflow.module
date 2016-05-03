@@ -8,6 +8,16 @@ use Drupal\views\ViewExecutable;
 use Drupal\workbench_moderation\Entity\ModerationState;
 
 /**
+ * Implements hook_entity_type_alter().
+ *
+ * @param \Drupal\Core\Entity\EntityTypeInterface[] $entity_types
+ */
+function lightning_workflow_entity_type_alter(array &$entity_types) {
+  // Scheduled updates are yoked to a parent entity and should not be versioned.
+  $entity_types['scheduled_update']->set('multiversion', FALSE);
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  */
 function lightning_workflow_form_node_form_alter(array &$form, FormStateInterface $form_state) {

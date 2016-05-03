@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\lightning_media\MultiversionAwareMediaStorage.
- */
-
 namespace Drupal\lightning_media;
 
 use Drupal\media_entity\MediaStorage;

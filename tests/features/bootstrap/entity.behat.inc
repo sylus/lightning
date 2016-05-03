@@ -253,7 +253,7 @@ class EntitySubContext extends DrupalSubContextBase implements DrupalSubContextI
       ->getStorage($entity_type)
       ->loadMultiple($entities);
 
-    $this->entities = array_merge($this->entities, $entities);
+    array_walk($entities, [$this, 'queueEntity']);
   }
 
 }

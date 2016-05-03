@@ -202,7 +202,9 @@ class LightningSubContext extends DrupalSubContextBase implements DrupalSubConte
       ]);
     $entity->save();
 
-    array_push($this->getContext('EntitySubContext')->entities, $entity);
+    /** @var \EntitySubContext $context */
+    $context = $this->getContext('EntitySubContext');
+    $context->queueEntity($entity);
   }
 
   /**

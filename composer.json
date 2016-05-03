@@ -41,6 +41,10 @@
             ]
         },
         "patches": {
+            "drupal/core": {
+                "allRevisions() entity queries ignore non-revisionable fields":
+                "https://www.drupal.org/files/issues/allrevisions_entity-2700261-22.patch"
+            },
             "drupal/media_entity": {
                 "Make compatible with IEF alpha4 - alpha2 to f544c91":
                 "https://www.drupal.org/files/issues/media_entity--beta2-to-f544c91.patch"
@@ -96,6 +100,6 @@
         "drupal-composer/drupal-scaffold": "^1.2",
         "drush/drush": "dev-master",
         "drupal/pathauto": "^8.1.0",
-        "drupal/multiversion": "^8.1.0"
+        "drupal/multiversion": "dev-8.x-1.x"
     }
 }

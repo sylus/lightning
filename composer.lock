@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b759a59905ec730830a3cae0dd7304b9",
-    "content-hash": "33396ad27ac0273b3b9055810aa6462c",
+    "hash": "d58f1765ef8b4109c097ab662fef9efd",
+    "content-hash": "697b3b7f6b5bc7d972ac3cd41349bf70",
     "packages": [
         {
             "name": "codegyre/robo",
@@ -783,7 +783,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/acquia_connector-8.x-1.1.zip",
-                "reference": "319a5dbcbe91a6acafce84dda11c9024aee6ac33",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -822,7 +822,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/config_update-8.x-1.1.zip",
-                "reference": "ac1526df5836a611f04bb421945beddb6306b7f2",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -852,16 +852,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "8.1.0",
+            "version": "8.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal-composer/drupal-core.git",
-                "reference": "78fb721295521bd9680731cf2a8287fb6e889afe"
+                "reference": "e405a10c85a874a70932fe53670993f790df746f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal-composer/drupal-core/zipball/78fb721295521bd9680731cf2a8287fb6e889afe",
-                "reference": "78fb721295521bd9680731cf2a8287fb6e889afe",
+                "url": "https://api.github.com/repos/drupal-composer/drupal-core/zipball/e405a10c85a874a70932fe53670993f790df746f",
+                "reference": "e405a10c85a874a70932fe53670993f790df746f",
                 "shasum": ""
             },
             "require": {
@@ -1000,10 +1000,8 @@
                     "Drupal\\Component\\": "lib/Drupal/Component",
                     "Drupal\\Driver\\": "../drivers/lib/Drupal/Driver"
                 },
-                "files": [
-                    "lib/Drupal.php"
-                ],
                 "classmap": [
+                    "lib/Drupal.php",
                     "lib/Drupal/Component/Utility/Timer.php",
                     "lib/Drupal/Component/Utility/Unicode.php",
                     "lib/Drupal/Core/Database/Database.php",
@@ -1017,7 +1015,7 @@
                 "GPL-2.0+"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2016-04-20 01:34:34"
+            "time": "2016-05-04 11:20:24"
         },
         {
             "name": "drupal/ctools",
@@ -1030,7 +1028,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.0-alpha25.zip",
-                "reference": "3c65d78a2ac14dbd0c54fea979a41ee9575aa188",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1070,7 +1068,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/embed-8.x-1.0-rc2.zip",
-                "reference": "294666ad05ad930003308a5fcd1282cdeb63833a",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1091,6 +1089,38 @@
             "time": "2016-04-14 01:03:52"
         },
         {
+            "name": "drupal/entity",
+            "version": "8.1.0-alpha3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/entity",
+                "reference": "70a105ae063c54bf59e67f9e41cb9121374acb7c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/entity-8.x-1.0-alpha3.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "~8.1",
+                "drupal/system": ">=8.1.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Provides expanded entity APIs, which will be moved to Drupal core one day.",
+            "homepage": "http://drupal.org/project/entity",
+            "time": "2016-04-27 08:54:12"
+        },
+        {
             "name": "drupal/entity_embed",
             "version": "8.1.0-alpha1",
             "source": {
@@ -1101,7 +1131,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/entity_embed-8.x-1.0-alpha1.zip",
-                "reference": "a40f556feaf921980f69d9fe4ccbc1ef2e325edb",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1125,34 +1155,6 @@
             "time": "2016-04-14 05:38:14"
         },
         {
-            "name": "drupal/entity_storage_migrate",
-            "version": "dev-8.x-1.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/entity_storage_migrate.git",
-                "reference": "cb4b5bfb09b98b518be51fa2f1d5bf5d377f5bf0"
-            },
-            "require": {
-                "drupal/core": "8.*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-8.x-1.x": "8.1.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.drupal-composer.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "description": "This module makes it possible to install modules that provide new entity storage handlers on sites that already have entity data on the site.",
-            "homepage": "http://drupal.org/project/entity_storage_migrate",
-            "keywords": [
-                "Drupal"
-            ],
-            "time": "2016-03-29 15:36:34"
-        },
-        {
             "name": "drupal/features",
             "version": "8.3.0-beta3",
             "source": {
@@ -1163,7 +1165,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/features-8.x-3.0-beta3.zip",
-                "reference": "14d66f68c13a0b93134ba15ac2ef641e6799eb1c",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1193,16 +1195,16 @@
         },
         {
             "name": "drupal/inline_entity_form",
-            "version": "8.1.0-alpha5",
+            "version": "8.1.0-alpha6",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/inline_entity_form",
-                "reference": "ae44ef3d00a070ba137f6929772863ff7218926f"
+                "reference": "27af4de9fd961fa6ae1369604d05fec8b06db867"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/inline_entity_form-8.x-1.0-alpha5.zip",
-                "reference": "ae44ef3d00a070ba137f6929772863ff7218926f",
+                "url": "https://ftp.drupal.org/files/projects/inline_entity_form-8.x-1.0-alpha6.zip",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1220,33 +1222,7 @@
             ],
             "description": "Provides a widget for inline management (creation, modification, removal) of referenced entities. ",
             "homepage": "https://www.drupal.org/project/inline_entity_form",
-            "time": "2016-02-29 21:27:04"
-        },
-        {
-            "name": "drupal/key_value",
-            "version": "8.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/key_value.git",
-                "reference": "e5cf1d9918c63869f1a265bb82c40b25370a5dea"
-            },
-            "require": {
-                "drupal/core": "8.*",
-                "drupal/serialization": "8.*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-8.x-1.x": "8.1.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.drupal-composer.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "description": "Extends the core key-value API with a backend for lists and sorted sets that you can do range queries on.",
-            "homepage": "https://www.drupal.org/project/key_value",
-            "time": "2015-12-05 00:22:40"
+            "time": "2016-04-18 21:57:48"
         },
         {
             "name": "drupal/layout_plugin",
@@ -1259,7 +1235,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/layout_plugin-8.x-1.0-alpha22.zip",
-                "reference": "90be55a68dd33d3564c26fab77573b62f6cda77e",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1304,20 +1280,21 @@
         },
         {
             "name": "drupal/media_entity",
-            "version": "8.1.0-beta2",
+            "version": "8.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/media_entity.git",
-                "reference": "48e56165e6f68bad83098a2a77c3eb8bde2ecedf"
+                "reference": "4b9542b93966c411832eaa1dfd94f84bf3ad7a4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/media_entity-8.x-1.0-beta2.zip",
-                "reference": "48e56165e6f68bad83098a2a77c3eb8bde2ecedf",
+                "url": "https://ftp.drupal.org/files/projects/media_entity-8.x-1.0.zip",
+                "reference": null,
                 "shasum": null
             },
             "require": {
                 "drupal/core": "8.*",
+                "drupal/entity": ">=8.1.0-alpha3",
                 "drupal/image": "8.*",
                 "drupal/user": "8.*",
                 "drupal/views": "8.*"
@@ -1326,9 +1303,6 @@
             "extra": {
                 "branch-alias": {
                     "dev-8.x-1.x": "8.1.x-dev"
-                },
-                "patches_applied": {
-                    "Make compatible with IEF alpha4 - alpha2 to f544c91": "https://www.drupal.org/files/issues/media_entity--beta2-to-f544c91.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -1337,7 +1311,7 @@
             ],
             "description": "Media entity API.",
             "homepage": "https://www.drupal.org/project/media_entity",
-            "time": "2016-01-21 14:20:12"
+            "time": "2016-05-01 15:23:10"
         },
         {
             "name": "drupal/media_entity_embeddable_video",
@@ -1350,7 +1324,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/media_entity_embeddable_video-8.x-1.0-beta2.zip",
-                "reference": "f7e51c2cccd875e1fd09d018c11fd50c93a71507",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1376,16 +1350,16 @@
         },
         {
             "name": "drupal/media_entity_image",
-            "version": "8.1.0-beta2",
+            "version": "8.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/media_entity_image.git",
-                "reference": "f17384aeba3c8c00bbc57bfa8fa68529992873ce"
+                "reference": "717acca8a2cc7ba6ab76f8a30bc7aa247f542255"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/media_entity_image-8.x-1.0-beta2.zip",
-                "reference": "f17384aeba3c8c00bbc57bfa8fa68529992873ce",
+                "url": "https://ftp.drupal.org/files/projects/media_entity_image-8.x-1.0.zip",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1404,20 +1378,20 @@
             ],
             "description": "Media entity local images provider.",
             "homepage": "https://www.drupal.org/project/media_entity_image",
-            "time": "2015-12-24 15:21:12"
+            "time": "2016-04-20 08:51:19"
         },
         {
             "name": "drupal/media_entity_instagram",
-            "version": "8.1.0-beta2",
+            "version": "8.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/media_entity_instagram.git",
-                "reference": "75e41cbae35f260fa0e3e76f90562e26b4dc162d"
+                "reference": "351d484ceff91623d32690cd57358f587c92ab4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/media_entity_instagram-8.x-1.0-beta2.zip",
-                "reference": "75e41cbae35f260fa0e3e76f90562e26b4dc162d",
+                "url": "https://ftp.drupal.org/files/projects/media_entity_instagram-8.x-1.0.zip",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1437,20 +1411,20 @@
             ],
             "description": "Media entity Instagram provider.",
             "homepage": "https://www.drupal.org/project/media_entity_instagram",
-            "time": "2015-12-24 15:27:08"
+            "time": "2016-02-10 08:00:41"
         },
         {
             "name": "drupal/media_entity_twitter",
-            "version": "8.1.0-beta2",
+            "version": "8.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/media_entity_twitter.git",
-                "reference": "495e6771065ccc05c4f39a23a43fad50c8f99a23"
+                "reference": "ef412841b5666e07b09c1c5d3643597f2767aa84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/media_entity_twitter-8.x-1.0-beta2.zip",
-                "reference": "495e6771065ccc05c4f39a23a43fad50c8f99a23",
+                "url": "https://ftp.drupal.org/files/projects/media_entity_twitter-8.x-1.0.zip",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1470,7 +1444,7 @@
             ],
             "description": "Media entity Twitter provider.",
             "homepage": "https://www.drupal.org/project/media_entity_twitter",
-            "time": "2016-01-04 21:59:55"
+            "time": "2016-02-25 16:02:22"
         },
         {
             "name": "drupal/metatag",
@@ -1483,7 +1457,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/metatag-8.x-1.0-beta7.zip",
-                "reference": "c12149e7ea0444bed959018384d48d1f79d42af3",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1524,35 +1498,6 @@
             "time": "2016-04-03 18:17:59"
         },
         {
-            "name": "drupal/multiversion",
-            "version": "dev-8.x-1.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/multiversion.git",
-                "reference": "a3c2260afbddc1f5436cf113fe7b88db20578490"
-            },
-            "require": {
-                "drupal/core": "8.*",
-                "drupal/entity_storage_migrate": "8.*",
-                "drupal/key_value": "8.*",
-                "drupal/serialization": "8.*",
-                "drupal/system": ">=8.1.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-8.x-1.x": "8.1.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.drupal-composer.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "description": "Extends the revision support for content entities.",
-            "homepage": "https://www.drupal.org/project/multiversion",
-            "time": "2016-04-27 16:12:15"
-        },
-        {
             "name": "drupal/page_manager",
             "version": "8.1.0-alpha23",
             "source": {
@@ -1563,7 +1508,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/page_manager-8.x-1.0-alpha23.zip",
-                "reference": "fed1710d1b366bb3417b197270c6d73caeae4fa1",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1609,7 +1554,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/panelizer-8.x-3.0-alpha2.zip",
-                "reference": "75a432927539383b391e6905fb5614cbe85a4b84",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1647,7 +1592,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/panels-8.x-3.0-beta4.zip",
-                "reference": "a463015692bd82a9446982f9ab044894dfdecdea",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1692,7 +1637,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/pathauto-8.x-1.0-alpha3.zip",
-                "reference": "c4952e15e2906ff2040bc01f5e8f37d23950269e",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1726,7 +1671,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/scheduled_updates-8.x-1.0-alpha5.zip",
-                "reference": "cdeceb8fd89a3644fb34a8a5bcc194ca7cbd84fe",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1765,7 +1710,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/services-8.x-4.0-alpha3.zip",
-                "reference": "3272958a223a1d0edb5875cc8378b31bb32b241e",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1798,7 +1743,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/token-8.x-1.0-alpha2.zip",
-                "reference": "918d0d5e8e8ee7f446d3e068cb6aa2d7c61ee625",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1829,7 +1774,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/workbench_moderation-8.x-1.0.zip",
-                "reference": "0c5527f911bcea52c71b8387b9fcbe9e71bc4332",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -1863,12 +1808,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/drush-ops/drush.git",
-                "reference": "1860a8de960b872f8282282197259b35850402df"
+                "reference": "1d7380decef2fe54567f419d63f2b1ab701df558"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drush-ops/drush/zipball/1860a8de960b872f8282282197259b35850402df",
-                "reference": "1860a8de960b872f8282282197259b35850402df",
+                "url": "https://api.github.com/repos/drush-ops/drush/zipball/1d7380decef2fe54567f419d63f2b1ab701df558",
+                "reference": "1d7380decef2fe54567f419d63f2b1ab701df558",
                 "shasum": ""
             },
             "require": {
@@ -1958,7 +1903,7 @@
             ],
             "description": "Drush is a command line shell and scripting interface for Drupal, a veritable Swiss Army knife designed to make life easier for those of us who spend some of our working hours hacking away at the command prompt.",
             "homepage": "http://www.drush.org",
-            "time": "2016-04-21 20:00:28"
+            "time": "2016-05-04 14:03:05"
         },
         {
             "name": "easyrdf/easyrdf",
@@ -5383,7 +5328,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/coder-8.x-2.7.zip",
-                "reference": "a5b5f6b5769393a016da0d106a3b33f932c73331",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -6001,8 +5946,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "cweagans/composer-patches": 20,
-        "drush/drush": 20,
-        "drupal/multiversion": 20
+        "drush/drush": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

@@ -87,7 +87,7 @@ class EntitySubContext extends DrupalSubContextBase implements DrupalSubContextI
   }
 
   /**
-   * Queues a node to be deleted at the end of the scenario.
+   * Queues a node created by Drupal Extension for post-scenario deletion.
    *
    * @param \Drupal\DrupalExtension\Hook\Scope\EntityScope $scope
    *   The hook scope.
@@ -100,7 +100,7 @@ class EntitySubContext extends DrupalSubContextBase implements DrupalSubContextI
   }
 
   /**
-   * Queues a taxonomy term to be deleted at the end of the scenario.
+   * Queues a term created by Drupal Extension for post-scenario deletion.
    *
    * @param \Drupal\DrupalExtension\Hook\Scope\EntityScope $scope
    *   The hook scope.
@@ -113,7 +113,7 @@ class EntitySubContext extends DrupalSubContextBase implements DrupalSubContextI
   }
 
   /**
-   * Queues a user to be deleted at the end of the scenario.
+   * Queues a user created by Drupal Extension for post-scenario deletion.
    *
    * @param \Drupal\DrupalExtension\Hook\Scope\EntityScope $scope
    *   The hook scope.
@@ -152,7 +152,17 @@ class EntitySubContext extends DrupalSubContextBase implements DrupalSubContextI
           \Drupal::service('path.alias_storage')->delete(['alias' => $alias]);
         }
 
-        $entity->delete();
+        /** @var \Drupal\Core\Entity\EntityStorageInterface $storage_handler */
+        $storage_handler = \Drupal::entityTypeManager()->getStorage($entity_type);
+        if (method_exists($storage_handler, 'purge')) {
+          // If there's a purge() method, this entity type is handled by
+          // Multiversion, which means calling delete() will only do a soft
+          // delete.
+          $storage_handler->purge($entities);
+        }
+        else {
+          $storage_handler->delete($entities);
+        }
       }
     }
   }

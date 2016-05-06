@@ -5,9 +5,22 @@ use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\field\Entity\FieldConfig;
+use Drupal\lightning_media\MultiversionAwareMediaStorage;
 use Drupal\media_entity\MediaBundleInterface;
 use Drupal\services\ServiceEndpointInterface;
 use Drupal\views\ViewEntityInterface;
+
+/**
+ * Implements hook_entity_type_alter().
+ *
+ * @param \Drupal\Core\Entity\EntityTypeInterface[] $entity_types
+ *   All defined entity types.
+ */
+function lightning_media_entity_type_alter(array &$entity_types) {
+  if (\Drupal::moduleHandler()->moduleExists('multiversion')) {
+    $entity_types['media']->setHandlerClass('storage', MultiversionAwareMediaStorage::class);
+  }
+}
 
 /**
  * Implements hook_ENTITY_TYPE_insert().

@@ -86,7 +86,7 @@
         "drupal/page_manager": "8.1.0-alpha23",
         "drupal/panelizer": "8.3.0-alpha2",
         "drupal/scheduled_updates": "8.1.0-alpha5",
-        "drupal/workbench_moderation": "8.1.0",
+        "drupal/workbench_moderation": "dev-8.x-1.x",
         "drupal/acquia_connector": "^8.1.1",
         "drupal/config_update": "^8.1.1",
         "drupal/features": "^8.3.0",
@@ -98,6 +98,7 @@
         "drush/drush": "^9.0",
         "drupal/pathauto": "^8.1.0",
         "drupal/video_embed_field": "8.1.0-rc8",
-        "drupal/multiversion": "dev-8.x-1.x"
+        "drupal/multiversion": "dev-8.x-1.x",
+        "drupal/workspace": "dev-8.x-1.x"
     }
 }

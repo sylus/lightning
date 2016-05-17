@@ -14,6 +14,7 @@
   <property name="docroot" value="docroot" />
   <property name="profile" value="${docroot}/profiles/lightning" />
   <property name="site" value="${docroot}/sites/default" />
+  <property name="si.key_value" value="" />
 
   <!-- Finds Composer, NPM, and rsync. -->
   <target name="env">
@@ -62,7 +63,7 @@
 
   <!-- Installs Lightning and sets it up for development. -->
   <target name="install" depends="env">
-    <exec command="${drush} site-install lightning --yes --account-pass=admin --db-url=${db.url}" dir="${docroot}" />
+    <exec command="${drush} site-install lightning --yes --account-pass=admin --db-url=${db.url} ${si.key_value}" dir="${docroot}" />
     <exec command="${drush} config-set system.performance css.preprocess 0 --yes --format=boolean" dir="${docroot}" />
     <exec command="${drush} config-set system.performance js.preprocess 0 --yes --format=boolean" dir="${docroot}" />
     <exec command="${drush} config-set system.logging error_level all --yes" dir="${docroot}" />

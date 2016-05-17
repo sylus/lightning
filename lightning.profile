@@ -46,14 +46,14 @@ function lightning_form_install_configure_form_alter(array &$form, FormStateInte
       'lightning_preview' => 'Lightning Preview',
     ],
   ];
-  // All our extensions are checked by default.
-  $form['lightning']['extensions']['#default_value'] = array_keys($form['lightning']['extensions']['#options']);
+  // Don't enable preview by default
+  $form['lightning']['extensions']['#default_value'] = [FALSE, FALSE, FALSE, FALSE];
 
   $form['#submit'][] = 'lightning_extensions_enable';
 }
 
 /**
- * Enable requested Lightning extensions and demo content.
+ * Enable requested Lightning extensions.
  */
 function lightning_extensions_enable($form_id, FormStateInterface $form_state) {
   $features = array_filter($form_state->getValue('extensions'));

@@ -41,6 +41,10 @@
             ]
         },
         "patches": {
+            "drupal/core": {
+                "Avoid writing install_profile value to settings.php when provided by a Distribution":
+                "https://www.drupal.org/files/issues/2156401-2-131.patch"
+            },
             "drupal/panelizer": {
                 "Generate new UUIDs for displays when switching from default to field storage":
                 "https://www.drupal.org/files/issues/2701349-2.patch",

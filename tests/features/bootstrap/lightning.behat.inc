@@ -314,4 +314,27 @@ class LightningSubContext extends DrupalSubContextBase implements DrupalSubConte
     }
   }
 
+  /**
+   * Creates a scheduled update for a single node.
+   *
+   * @param string $to_state
+   *   The moderation state to which the node will be updated.
+   * @param string $when
+   *   When the update should run, in the form of YYYY-MM-DD HH:MM:SS.
+   *
+   * @When I schedule the node to be :to_state at :when
+   */
+  public function scheduleUpdate($to_state, $when) {
+    $this->minkContext->pressButton('Add new scheduled update');
+    $this->minkContext->iWaitForAjaxToFinish();
+
+    list ($date, $time) = explode(' ', $when);
+    $this->minkContext->fillField('scheduled_update[form][inline_entity_form][update_timestamp][0][value][date]', $date);
+    $this->minkContext->fillField('scheduled_update[form][inline_entity_form][update_timestamp][0][value][time]', $time);
+    $this->minkContext->selectOption('scheduled_update[form][inline_entity_form][field_moderation_state]', $to_state);
+
+    $this->minkContext->pressButton('Create scheduled update');
+    $this->minkContext->iWaitForAjaxToFinish();
+  }
+
 }

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a8874e188abf37501ceeb07c19b35d8a",
-    "content-hash": "0cd15ecd6c668f456354d89b191d4bd4",
+    "hash": "5dba26e22ae4e0d3e33344a7361cf565",
+    "content-hash": "fed96bf15bfbe99193c29136d19f7d9e",
     "packages": [
         {
             "name": "codegyre/robo",
@@ -1156,6 +1156,34 @@
             "time": "2016-04-14 05:38:14"
         },
         {
+            "name": "drupal/entity_storage_migrate",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/entity_storage_migrate.git",
+                "reference": "cb4b5bfb09b98b518be51fa2f1d5bf5d377f5bf0"
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "This module makes it possible to install modules that provide new entity storage handlers on sites that already have entity data on the site.",
+            "homepage": "http://drupal.org/project/entity_storage_migrate",
+            "keywords": [
+                "Drupal"
+            ],
+            "time": "2016-03-29 15:36:34"
+        },
+        {
             "name": "drupal/features",
             "version": "8.3.0-beta3",
             "source": {
@@ -1224,6 +1252,32 @@
             "description": "Provides a widget for inline management (creation, modification, removal) of referenced entities. ",
             "homepage": "https://www.drupal.org/project/inline_entity_form",
             "time": "2016-04-18 21:57:48"
+        },
+        {
+            "name": "drupal/key_value",
+            "version": "8.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/key_value.git",
+                "reference": "e5cf1d9918c63869f1a265bb82c40b25370a5dea"
+            },
+            "require": {
+                "drupal/core": "8.*",
+                "drupal/serialization": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Extends the core key-value API with a backend for lists and sorted sets that you can do range queries on.",
+            "homepage": "https://www.drupal.org/project/key_value",
+            "time": "2015-12-05 00:22:40"
         },
         {
             "name": "drupal/layout_plugin",
@@ -1466,6 +1520,35 @@
             "time": "2016-05-14 11:04:56"
         },
         {
+            "name": "drupal/multiversion",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/multiversion.git",
+                "reference": "67e7d9418ea7172950b9cf4762c5a092c4d9ba6e"
+            },
+            "require": {
+                "drupal/core": "8.*",
+                "drupal/entity_storage_migrate": "8.*",
+                "drupal/key_value": "8.*",
+                "drupal/serialization": "8.*",
+                "drupal/system": ">=8.1.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Extends the revision support for content entities.",
+            "homepage": "https://www.drupal.org/project/multiversion",
+            "time": "2016-05-05 16:11:34"
+        },
+        {
             "name": "drupal/page_manager",
             "version": "8.1.0-alpha23",
             "source": {
@@ -1653,7 +1736,8 @@
                     "dev-8.x-1.x": "8.1.x-dev"
                 },
                 "patches_applied": {
-                    "2674874 - Issue saving Schedule Update Type form": "https://www.drupal.org/files/issues/schedule_updates-save_type-2674874-2.patch"
+                    "2674874 - Issue saving Schedule Update Type form": "https://www.drupal.org/files/issues/schedule_updates-save_type-2674874-2.patch",
+                    "2720169 - Scheduled Update Type entity should not have canonical link template": "https://www.drupal.org/files/issues/scheduled_updates-no-canonical-link-for-update-type.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -5962,7 +6046,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "cweagans/composer-patches": 20
+        "cweagans/composer-patches": 20,
+        "drupal/multiversion": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

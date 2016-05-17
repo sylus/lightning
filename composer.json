@@ -57,7 +57,9 @@
             },
             "drupal/scheduled_updates": {
                 "2674874 - Issue saving Schedule Update Type form":
-                "https://www.drupal.org/files/issues/schedule_updates-save_type-2674874-2.patch"
+                "https://www.drupal.org/files/issues/schedule_updates-save_type-2674874-2.patch",
+                "2720169 - Scheduled Update Type entity should not have canonical link template":
+                "https://www.drupal.org/files/issues/scheduled_updates-no-canonical-link-for-update-type.patch"
             },
             "drupal/workbench_moderation": {
                 "2668006 - Provide logical access control for when IPE should be applied to moderated nodes":
@@ -95,6 +97,7 @@
         "drupal-composer/drupal-scaffold": "^1.2",
         "drush/drush": "^9.0",
         "drupal/pathauto": "^8.1.0",
-        "drupal/video_embed_field": "8.1.0-rc8"
+        "drupal/video_embed_field": "8.1.0-rc8",
+        "drupal/multiversion": "dev-8.x-1.x"
     }
 }

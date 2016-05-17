@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "799f2574c2e4e9dc7e7f7ca95fe26ab0",
-    "content-hash": "bb7dcee732965031b21836ddfef7e57d",
+    "hash": "a8874e188abf37501ceeb07c19b35d8a",
+    "content-hash": "0cd15ecd6c668f456354d89b191d4bd4",
     "packages": [
         {
             "name": "codegyre/robo",
@@ -852,16 +852,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "8.1.1",
+            "version": "8.2.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal-composer/drupal-core.git",
-                "reference": "e405a10c85a874a70932fe53670993f790df746f"
+                "reference": "4f2aeea18944f72b25500b1d24ac14912c2b05bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal-composer/drupal-core/zipball/e405a10c85a874a70932fe53670993f790df746f",
-                "reference": "e405a10c85a874a70932fe53670993f790df746f",
+                "url": "https://api.github.com/repos/drupal-composer/drupal-core/zipball/4f2aeea18944f72b25500b1d24ac14912c2b05bd",
+                "reference": "4f2aeea18944f72b25500b1d24ac14912c2b05bd",
                 "shasum": ""
             },
             "require": {
@@ -922,6 +922,7 @@
                 "drupal/core-discovery": "self.version",
                 "drupal/core-event-dispatcher": "self.version",
                 "drupal/core-file-cache": "self.version",
+                "drupal/core-filesystem": "self.version",
                 "drupal/core-gettext": "self.version",
                 "drupal/core-graph": "self.version",
                 "drupal/core-php-storage": "self.version",
@@ -985,7 +986,7 @@
                 "drupal/views_ui": "self.version"
             },
             "require-dev": {
-                "behat/mink": "~1.6",
+                "behat/mink": "~1.7",
                 "behat/mink-goutte-driver": "~1.2",
                 "jcalderonzumba/gastonjs": "~1.0.2",
                 "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
@@ -1015,7 +1016,7 @@
                 "GPL-2.0+"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2016-05-04 11:20:24"
+            "time": "2016-05-17 09:46:34"
         },
         {
             "name": "drupal/ctools",
@@ -1413,15 +1414,15 @@
         },
         {
             "name": "drupal/metatag",
-            "version": "8.1.0-beta7",
+            "version": "8.1.0-beta8",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/metatag",
-                "reference": "c12149e7ea0444bed959018384d48d1f79d42af3"
+                "reference": "6a1b892f9b1f1a3b027dbddca81676e0d69a6ef3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/metatag-8.x-1.0-beta7.zip",
+                "url": "https://ftp.drupal.org/files/projects/metatag-8.x-1.0-beta8.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -1431,11 +1432,13 @@
                 "drupal/token": "8.*"
             },
             "replace": {
+                "drupal/metatag_google_plus": "self.version",
                 "drupal/metatag_open_graph": "self.version",
-                "drupal/metatag_twitter_cards": "self.version"
+                "drupal/metatag_twitter_cards": "self.version",
+                "drupal/metatag_verification": "self.version"
             },
             "suggest": {
-                "drupal/core": "Required by drupal/metatag_open_graph, drupal/metatag_twitter_cards"
+                "drupal/core": "Required by drupal/metatag_google_plus, drupal/metatag_open_graph, drupal/metatag_twitter_cards, drupal/metatag_verification"
             },
             "type": "drupal-module",
             "extra": {
@@ -1460,7 +1463,7 @@
                 "php",
                 "seo"
             ],
-            "time": "2016-04-03 18:17:59"
+            "time": "2016-05-14 11:04:56"
         },
         {
             "name": "drupal/page_manager",
@@ -1983,25 +1986,24 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "1.2.11",
+            "version": "1.2.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "04c6cdf9871140b80947c87db7770c0dd9c75c7c"
+                "reference": "cbfe3ee6f758225559b1111048e05a3e4c2e26cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/04c6cdf9871140b80947c87db7770c0dd9c75c7c",
-                "reference": "04c6cdf9871140b80947c87db7770c0dd9c75c7c",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/cbfe3ee6f758225559b1111048e05a3e4c2e26cf",
+                "reference": "cbfe3ee6f758225559b1111048e05a3e4c2e26cf",
                 "shasum": ""
             },
             "require": {
-                "doctrine/lexer": "~1.0,>=1.0.1",
+                "doctrine/lexer": "^1.0.1",
                 "php": ">= 5.3.3"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.4",
-                "satooshi/php-coveralls": "dev-master"
+                "phpunit/phpunit": "^4.8.24"
             },
             "type": "library",
             "extra": {
@@ -2032,7 +2034,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2015-11-11 03:28:32"
+            "time": "2016-05-15 10:06:34"
         },
         {
             "name": "guzzlehttp/guzzle",

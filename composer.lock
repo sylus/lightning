@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a8874e188abf37501ceeb07c19b35d8a",
-    "content-hash": "0cd15ecd6c668f456354d89b191d4bd4",
+    "hash": "c9933c1a38535df985a6b7a850f06178",
+    "content-hash": "2752d5597396b5978c98aab2c8d139e2",
     "packages": [
         {
             "name": "codegyre/robo",
@@ -995,6 +995,11 @@
                 "symfony/css-selector": "~2.8"
             },
             "type": "drupal-core",
+            "extra": {
+                "patches_applied": {
+                    "Avoid writing install_profile value to settings.php when provided by a Distribution": "https://www.drupal.org/files/issues/2156401-2-131.patch"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Drupal\\Core\\": "lib/Drupal/Core",

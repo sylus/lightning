@@ -5,5 +5,7 @@ description: Preview everything before you publish.
 package: Lightning
 dependencies:
   - workspace
+  - workbench_moderation
   - migrate
+  - migrate_drupal
 

@@ -1,18 +1,13 @@
 <?php
 
 use Drupal\multiversion\Entity\Workspace;
-use Drupal\node\Entity\Node;
-use Drupal\user\Entity\User;
 
 /**
- * Implements hook_install()
+ * Implements hook_modules_installed()
  *
- * Sets up the site to demo the WPS
- *
- * @todo Proof of concept - much of this config should go away and the remaining
- * should be moved to the config system via features.
+ * Enables moderation for the default workspace entity
  */
-function lightning_preview_install() {
+function lightning_preview_modules_installed() {
   $container = \Drupal::getContainer();
   $workspace_manager = $container->get('workspace.manager');
 

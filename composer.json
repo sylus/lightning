@@ -86,7 +86,7 @@
         "drupal/page_manager": "8.1.0-alpha23",
         "drupal/panelizer": "8.3.0-alpha2",
         "drupal/scheduled_updates": "8.1.0-alpha5",
-        "drupal/workbench_moderation": "dev-8.x-1.x",
+        "drupal/workbench_moderation": "dev-8.x-1.x#47b107185e23df362a18a78e26361e738ffe3ccd",
         "drupal/acquia_connector": "^8.1.1",
         "drupal/config_update": "^8.1.1",
         "drupal/features": "^8.3.0",
@@ -98,7 +98,10 @@
         "drush/drush": "^9.0",
         "drupal/pathauto": "^8.1.0",
         "drupal/video_embed_field": "8.1.0-rc8",
-        "drupal/multiversion": "dev-8.x-1.x",
-        "drupal/workspace": "dev-8.x-1.x"
+        "drupal/multiversion": "dev-8.x-1.x#67e7d9418ea7172950b9cf4762c5a092c4d9ba6e",
+        "drupal/workspace": "dev-8.x-1.x#9d8202ec7fe724c85781d4b231992cbe50d187b1",
+        "drupal/replication": "dev-8.x-1.x#bc2cb7ad6a97bbd624340b0574abefed7af55fc6",
+        "drupal/entity_storage_migrate": "dev-8.x-1.x#cb4b5bfb09b98b518be51fa2f1d5bf5d377f5bf0",
+        "drupal/key_value": "dev-8.x-1.x#461bc1ca1579ca72e56de3768f02756438053503"
     }
 }

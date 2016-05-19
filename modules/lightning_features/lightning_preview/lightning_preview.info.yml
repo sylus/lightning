@@ -4,7 +4,6 @@ core: 8.x
 description: Preview everything before you publish.
 package: Lightning
 dependencies:
-  - multiversion
   - workspace
-  - workbench_moderation
+  - migrate
 

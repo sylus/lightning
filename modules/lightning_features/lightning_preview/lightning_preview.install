@@ -23,49 +23,5 @@ function lightning_preview_install() {
   $workspace_type->setThirdPartySetting('workbench_moderation', 'allowed_moderation_states', ['draft', 'needs_review', 'published']);
   $workspace_type->setThirdPartySetting('workbench_moderation', 'default_moderation_state', 'draft');
   $workspace_type->save();
-
-  // Setup Workspaces.
-  $live_workspace = $workspace_manager->getActiveWorkspace();
-  $red_workspace = Workspace::create([
-    'type' => 'basic',
-    'machine_name' => 'red_wins',
-    'label' => 'Red Wins',
-  ]);
-  $red_workspace->save();
-  $blue_workspace = Workspace::create([
-    'type' => 'basic',
-    'machine_name' => 'blue_wins',
-    'label' => 'Blue Wins',
-  ]);
-  $blue_workspace->save();
-
-  // Create content in Live workspace.
-  $entity = Node::create([
-    'type' => 'page',
-    'title' => 'Upcoming Game: Red Team vs Blue Team',
-    'body' => 'The longest rivals in sporting history, Red Team vs Blue Team, play this Saturday in New Orleans.',
-  ]);
-  $entity->moderation_state->target_id = 'published';
-  $entity->save();
-
-  // Create content in Red Team workspace.
-  $entity = Node::create([
-    'type' => 'page',
-    'title' => 'Red Team Wins!',
-    'body' => 'What an unbelievable game! The Red Team wins after quadruple over time!',
-  ]);
-  $entity->moderation_state->target_id = 'published';
-  $entity->workspace = $red_workspace;
-  $entity->save();
-
-  // Create content in Blue Team workspace.
-  $entity = Node::create([
-    'type' => 'page',
-    'title' => 'Blue Team Wins!',
-    'body' => 'What an unbelievable game! The Blue Team wins after quadruple over time!',
-  ]);
-  $entity->moderation_state->target_id = 'published';
-  $entity->workspace = $blue_workspace;
-  $entity->save();
 }
 

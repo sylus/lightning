@@ -46,7 +46,9 @@ function lightning_form_install_configure_form_alter(array &$form, FormStateInte
       'lightning_preview' => 'Lightning Preview',
     ],
   ];
-  // Don't enable preview by default
+  // For some reason, enabling everything at install causes problems (e.g.
+  // `user` table doesn't exist). So we don't enable them for now. Enabling them
+  // after install works fine.
   $form['lightning']['extensions']['#default_value'] = [FALSE, FALSE, FALSE, FALSE];
 
   $form['#submit'][] = 'lightning_extensions_enable';

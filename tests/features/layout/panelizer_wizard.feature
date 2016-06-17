@@ -89,7 +89,6 @@ Feature: Panelizer Wizard
     And I click "Edit draft"
     Then the "Full content" field should be disabled
 
-  @javascript
   Scenario: Change the layout of an existing Panelizer Wizard.
     Given I am logged in as a user with the "layout_manager" role
     When I go to "/admin/structure/panelizer/edit/node__landing_page__full__default/layout"
@@ -98,16 +97,21 @@ Feature: Panelizer Wizard
     Then the response status code should be 200
     And I press "Cancel"
 
-  @javascript
+  @javascript @foo
   Scenario: Create a new layout using the Panelizer Wizard
     Given I am logged in as a user with the "layout_manager" role
     When I go to "/admin/structure/panelizer/add/node/landing_page/full"
+    And I press "Next"
     And I enter "Foo" for "Wizard name"
+    And I enter "foo" for "Machine-readable name"
     And I press "Next"
     And I press "Next"
     And I press "Next"
     And I enter "[node:title]" for "Page title"
-    And I place the "Authored by" block into the "Middle column" panelizer region
+    And I place the "Authored by" block into the "middle" panelizer region
     And I press "Finish"
-    Then the response status code should be 200
     And I press "Cancel"
+    And I should be on "/admin/structure/types/manage/landing_page/display/full"
+    Then I should see "Foo"
+    And I go to "/admin/structure/panelizer/delete/node__landing_page__full__foo"
+    And I press "Confirm"

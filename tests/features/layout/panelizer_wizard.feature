@@ -97,7 +97,7 @@ Feature: Panelizer Wizard
     Then the response status code should be 200
     And I press "Cancel"
 
-  @javascript @foo
+  @javascript
   Scenario: Create a new layout using the Panelizer Wizard
     Given I am logged in as a user with the "layout_manager" role
     When I go to "/admin/structure/panelizer/add/node/landing_page/full"

@@ -94,7 +94,7 @@ Feature: Panelizer Wizard
     When I go to "/admin/structure/panelizer/edit/node__landing_page__full__default/layout"
     And I select "Two column" from "Layout"
     And I press "Change Layout"
-    Then the response status code should be 200
+    Then I should be on "/admin/structure/panelizer/edit/node__landing_page__full__default/regions"
     And I press "Cancel"
 
   @javascript

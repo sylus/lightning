@@ -89,14 +89,6 @@ Feature: Panelizer Wizard
     And I click "Edit draft"
     Then the "Full content" field should be disabled
 
-  Scenario: Change the layout of an existing Panelizer Wizard.
-    Given I am logged in as a user with the "layout_manager" role
-    When I go to "/admin/structure/panelizer/edit/node__landing_page__full__default/layout"
-    And I select "Two column" from "Layout"
-    And I press "Change Layout"
-    Then I should be on "/admin/structure/panelizer/edit/node__landing_page__full__default/regions"
-    And I press "Cancel"
-
   @javascript
   Scenario: Create a new layout using the Panelizer Wizard
     Given I am logged in as a user with the "layout_manager" role

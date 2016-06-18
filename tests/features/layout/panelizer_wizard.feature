@@ -90,21 +90,6 @@ Feature: Panelizer Wizard
     Then the "Full content" field should be disabled
 
   @javascript
-  Scenario: Change the layout of an existing Panelizer Wizard.
-    Given I am logged in as a user with the "administrator" role
-    When I go to "/admin/structure/panelizer/edit/node__landing_page__full__default/layout"
-    And I select "Two column" from "Layout"
-    And I press "Change Layout"
-    Then I should be on "/admin/structure/panelizer/edit/node__landing_page__full__default/regions"
-    And I should see "Old Layout"
-    And I should see "New Layout"
-    And I press "Cancel"
-    And the cache has been cleared
-    And I am an anonymous user
-    And I am logged in as a user with the "layout_manager" role
-    And I go to "/admin/structure/panelizer/add/node/landing_page/full"
-
-  @javascript
   Scenario: Create a new layout using the Panelizer Wizard
     Given I am logged in as a user with the "layout_manager" role
     When I go to "/admin/structure/panelizer/add/node/landing_page/full"

@@ -114,4 +114,6 @@ Feature: Panelizer Wizard
     And I select "Two column" from "Layout"
     And I press "Change Layout"
     Then I should be on "/admin/structure/panelizer/edit/node__landing_page__full__default/regions"
+    And I should see "Old Layout"
+    And I should see "New Layout"
     And I press "Cancel"

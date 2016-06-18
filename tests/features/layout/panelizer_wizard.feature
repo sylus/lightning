@@ -118,3 +118,4 @@ Feature: Panelizer Wizard
     And I should see "Old Layout"
     And I should see "New Layout"
     And I press "Cancel"
+    And I run drush "cache-rebuild"

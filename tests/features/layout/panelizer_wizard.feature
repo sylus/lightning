@@ -108,6 +108,7 @@ Feature: Panelizer Wizard
     And I go to "/admin/structure/panelizer/delete/node__landing_page__full__foo"
     And I press "Confirm"
 
+  @javascript
   Scenario: Change the layout of an existing Panelizer Wizard.
     Given I am logged in as a user with the "layout_manager" role
     When I go to "/admin/structure/panelizer/edit/node__landing_page__full__default/layout"

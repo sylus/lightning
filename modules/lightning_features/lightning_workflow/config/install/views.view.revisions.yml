@@ -5,6 +5,8 @@ dependencies:
     - node
     - user
     - workbench_moderation
+_core:
+  default_config_hash: FVc7FC_Xt04-BB0aGQ7HKzn7qrKcS5gPY4zxm7WIYuQ
 id: revisions
 label: Revisions
 module: views
@@ -557,6 +559,15 @@ display:
     display_options:
       display_extenders: {  }
       path: node/%/revisions
+      menu:
+        type: tab
+        title: Revisions
+        description: ''
+        expanded: false
+        parent: ''
+        weight: 0
+        context: '0'
+        menu_name: main
     cache_metadata:
       max-age: 0
       contexts:

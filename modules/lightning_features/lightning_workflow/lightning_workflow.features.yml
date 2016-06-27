@@ -11,3 +11,4 @@ required:
   - scheduled_updates.scheduled_update_type.multiple_node_embargo
   - scheduled_updates.scheduled_update_type.node_embargo
   - views.view.moderation_history
+  - views.view.revisions

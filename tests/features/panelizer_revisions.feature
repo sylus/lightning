@@ -11,7 +11,7 @@ Feature: Showing the Panels IPE interface on the latest content revision only
     And I click "Edit draft"
     And I enter "This is the second revision!" for "body[0][value]"
     And I press "Save"
-    And I visit the current revision
+    And I visit the 1st revision
     Then I should see a "#panels-ipe-content" element
     And I visit the 2nd revision
     And I should not see a "#panels-ipe-content" element

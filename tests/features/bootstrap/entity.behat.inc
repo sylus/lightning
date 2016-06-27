@@ -212,16 +212,6 @@ class EntitySubContext extends DrupalSubContextBase implements DrupalSubContextI
   }
 
   /**
-   * Visits the current revision of a node.
-   *
-   * @When I visit the current revision
-   */
-  public function visitCurrentNodeRevision() {
-    $this->minkContext->clickLink('Revisions');
-    $this->lightning->clickElementBySelector('table tr:first-child .views-field-title a');
-  }
-
-  /**
    * Visits a specific revision of a node.
    *
    * @param int $n
@@ -231,7 +221,7 @@ class EntitySubContext extends DrupalSubContextBase implements DrupalSubContextI
    */
   public function visitNthRevision($n) {
     $this->minkContext->clickLink('Revisions');
-    $this->lightning->clickElementBySelector('main table tr:nth-child(' . $n . ') td:first-child a');
+    $this->lightning->clickElementBySelector('table tr:nth-child(' . $n . ') .views-field-title a');
   }
 
   /**

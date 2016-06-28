@@ -73,6 +73,10 @@ function lightning_workflow_update_8001() {
  * Attempts to install the improved node revision view.
  */
 function lightning_workflow_update_8002() {
+  // We are providing a new access plugin for the node_revisions view,
+  // so clear the cached access plugin info.
+  \Drupal::service('plugin.manager.views.access')->clearCachedDefinitions();
+
   $values = lightning_read_config('views.view.node_revisions', 'lightning_workflow');
   try {
     View::create($values)->save();

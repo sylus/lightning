@@ -5,7 +5,7 @@ dependencies:
     - node
     - user
     - workbench_moderation
-id: revisions
+id: node_revisions
 label: Revisions
 module: views
 description: ''

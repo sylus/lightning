@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Route;
 
 /**
+ * Access plugin that emulates the controls at /node/{node}/revisions.
+ *
  * @ViewsAccess(
  *   id = "node_revision",
  *   title = @Translation("Node Revision"),
@@ -19,15 +21,33 @@ use Symfony\Component\Routing\Route;
 class NodeRevision extends AccessPluginBase {
 
   /**
+   * The current request.
+   *
    * @var \Symfony\Component\HttpFoundation\Request
    */
   protected $request;
 
   /**
+   * The node revision access checker.
+   *
    * @var \Drupal\node\Access\NodeRevisionAccessCheck
    */
   protected $accessChecker;
 
+  /**
+   * NodeRevision constructor.
+   *
+   * @param array $configuration
+   *   Plugin configuration.
+   * @param string $plugin_id
+   *   The plugin ID.
+   * @param mixed $plugin_definition
+   *   The plugin definition.
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The current request.
+   * @param \Drupal\node\Access\NodeRevisionAccessCheck $access_checker
+   *   The node revision access checker.
+   */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, Request $request, NodeRevisionAccessCheck $access_checker) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->request = $request;

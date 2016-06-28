@@ -1,0 +1,67 @@
+<?php
+
+namespace Drupal\lightning_workflow\Plugin\views\access;
+
+use Drupal\Core\Session\AccountInterface;
+use Drupal\node\Access\NodeRevisionAccessCheck;
+use Drupal\views\Plugin\views\access\AccessPluginBase;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Route;
+
+/**
+ * @ViewsAccess(
+ *   id = "node_revision",
+ *   title = @Translation("Node Revision"),
+ *   help = @Translation("Will be available on node pages if the user can view revisions.")
+ * )
+ */
+class NodeRevision extends AccessPluginBase {
+
+  /**
+   * @var \Symfony\Component\HttpFoundation\Request
+   */
+  protected $request;
+
+  /**
+   * @var \Drupal\node\Access\NodeRevisionAccessCheck
+   */
+  protected $accessChecker;
+
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, Request $request, NodeRevisionAccessCheck $access_checker) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->request = $request;
+    $this->accessChecker = $access_checker;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('request_stack')->getCurrentRequest(),
+      $container->get('access_check.node.revision')
+    );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function access(AccountInterface $account) {
+    $node = $this->request->get('node');
+    return $this->accessChecker->checkAccess($node, $account);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function alterRouteDefinition(Route $route) {
+    // Unconditionally allow access to the route; we'll do the heavy lifting
+    // in static::access().
+    $route->setRequirement('_access', 'TRUE');
+  }
+
+}

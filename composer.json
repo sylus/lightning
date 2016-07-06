@@ -33,7 +33,8 @@
     "scripts": {
         "post-install-cmd": [
             "PhantomInstaller\\Installer::installPhantomJS",
-            "./bin/phing"
+            "@composer drupal-scaffold",
+            "./bin/phing push"
         ],
         "post-update-cmd": [
             "./bin/phing push"
@@ -59,8 +60,10 @@
                 "https://www.drupal.org/files/issues/ctools--8.x-3.0-alpha26--1fe3649.patch"
             },
             "drupal/entity_browser": {
+                "2758767 - EB views that sort in descending order are broken by render caching":
+                "https://www.drupal.org/files/issues/entity_browser-view-selection-render-cache-fix.patch",
                 "2738843 - The view widget should support radio buttons":
-                "https://www.drupal.org/files/issues/2738843-2.patch"
+                "https://www.drupal.org/files/issues/2738843-4.patch"
             },
             "drupal/entity_embed": {
                 "2656062 - Hide Next button during Selection if Entity Browser is enabled":
@@ -104,7 +107,9 @@
             },
             "drush/drush": {
                 "Adding composer.json support to make-convert command":
-                "https://github.com/drush-ops/drush/commit/ce82b946d49b09cd33da5ca84feb24a6c35f8f8e.patch"
+                "https://github.com/drush-ops/drush/commit/ce82b946d49b09cd33da5ca84feb24a6c35f8f8e.patch",
+                "The batch table may not exist by the time _drush_backend_batch_process() is called in 8.x-1.x":
+                "https://github.com/drush-ops/drush/commit/c389aebb7d3e26ff0f544684d8b3ec3528107e55.diff"
             }
         }
     },

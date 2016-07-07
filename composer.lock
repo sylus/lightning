@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0a22f295613a4403b6a35afd1642e878",
-    "content-hash": "14a6efb91dcf169afb17221fd75a2b8b",
+    "hash": "db9359e0fdffb3abf0d2692b71fa7039",
+    "content-hash": "4358104f5a6429af201ab9b2fadb2879",
     "packages": [
         {
             "name": "composer/installers",
@@ -1212,11 +1212,11 @@
         },
         {
             "name": "drupal/key_value",
-            "version": "dev-8.x-1.x",
+            "version": "8.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/key_value.git",
-                "reference": "fd4b7571485f5f52b89e6c7b30e402bc24c0f0cb"
+                "reference": "e5cf1d9918c63869f1a265bb82c40b25370a5dea"
             },
             "require": {
                 "drupal/core": "8.*",
@@ -1234,7 +1234,7 @@
             ],
             "description": "Extends the core key-value API with a backend for lists and sorted sets that you can do range queries on.",
             "homepage": "https://www.drupal.org/project/key_value",
-            "time": "2016-06-24 13:08:51"
+            "time": "2015-12-05 00:22:40"
         },
         {
             "name": "drupal/layout_plugin",
@@ -1507,11 +1507,17 @@
         },
         {
             "name": "drupal/multiversion",
-            "version": "dev-8.x-1.x",
+            "version": "8.1.0-alpha9",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/multiversion.git",
-                "reference": "208e7bd536ec8922d31bfd469c812b7f33e4b5c6"
+                "reference": "1e3cdf3de6dc25688402a756cfcc65c55128849f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/multiversion-8.x-1.0-alpha9.zip",
+                "reference": null,
+                "shasum": null
             },
             "require": {
                 "drupal/core": "8.*",
@@ -1532,7 +1538,7 @@
             ],
             "description": "Extends the revision support for content entities.",
             "homepage": "https://www.drupal.org/project/multiversion",
-            "time": "2016-06-28 14:05:24"
+            "time": "2016-06-20 10:32:11"
         },
         {
             "name": "drupal/page_manager",
@@ -1705,11 +1711,17 @@
         },
         {
             "name": "drupal/replication",
-            "version": "dev-8.x-1.x",
+            "version": "8.1.0-alpha2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/replication.git",
-                "reference": "ec5d7dc0e2906d13750d9bfe3af3547c904b5203"
+                "reference": "8d10af8e266bb3cf0ccdd5812946694f8c718b52"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/replication-8.x-1.0-alpha2.zip",
+                "reference": null,
+                "shasum": null
             },
             "require": {
                 "drupal/core": "8.*",
@@ -1727,7 +1739,7 @@
             ],
             "description": "Provides services and entities types so assist with and log content replication.",
             "homepage": "http://drupal.org/project/replication",
-            "time": "2016-06-24 13:57:40"
+            "time": "2016-06-17 15:06:44"
         },
         {
             "name": "drupal/scheduled_updates",
@@ -1923,11 +1935,17 @@
         },
         {
             "name": "drupal/workspace",
-            "version": "dev-8.x-1.x",
+            "version": "8.1.0-alpha2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/workspace",
-                "reference": "447e132cf0407b859a76b332120addb8da834d10"
+                "reference": "47aa21574eac7b252c8f4c5f8fe348885f39a70b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/workspace-8.x-1.0-alpha2.zip",
+                "reference": null,
+                "shasum": null
             },
             "require": {
                 "drupal/core": "8.*",
@@ -4912,10 +4930,6 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "9.0.x-dev"
-                },
-                "patches_applied": {
-                    "Adding composer.json support to make-convert command": "https://github.com/drush-ops/drush/commit/ce82b946d49b09cd33da5ca84feb24a6c35f8f8e.patch",
-                    "The batch table may not exist by the time _drush_backend_batch_process() is called in 8.x-1.x": "https://github.com/drush-ops/drush/commit/c389aebb7d3e26ff0f544684d8b3ec3528107e55.diff"
                 }
             },
             "autoload": {
@@ -7121,11 +7135,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/multiversion": 20,
-        "drupal/workspace": 20,
-        "drupal/replication": 20,
-        "drupal/entity_storage_migrate": 20,
-        "drupal/key_value": 20
+        "drupal/entity_storage_migrate": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

@@ -264,23 +264,6 @@ class LightningSubContext extends DrupalSubContextBase implements DrupalSubConte
   }
 
   /**
-   * Asserts that a button is not present on the page.
-   *
-   * @param string $button
-   *   The label of the button.
-   *
-   * @Then I should not see the :button button
-   */
-  public function assertNotButton($button) {
-    try {
-      $this->minkContext->assertButton($button);
-    }
-    catch (\Exception $e) {
-      // If the assertion failed, the button does not exist and all is well.
-    }
-  }
-
-  /**
    * Fills in an autocompleting entity reference field.
    *
    * @param string $entity_type
@@ -315,26 +298,76 @@ class LightningSubContext extends DrupalSubContextBase implements DrupalSubConte
   }
 
   /**
-   * Creates a scheduled update for a single node.
+   * Asserts the presence of a live preview element.
    *
-   * @param string $to_state
-   *   The moderation state to which the node will be updated.
-   * @param string $when
-   *   When the update should run, in the form of YYYY-MM-DD HH:MM:SS.
-   *
-   * @When I schedule the node to be :to_state at :when
+   * @Then I should see a preview
    */
-  public function scheduleUpdate($to_state, $when) {
-    $this->minkContext->pressButton('Add new scheduled update');
-    $this->minkContext->iWaitForAjaxToFinish();
+  public function assertPreviewElement() {
+    $this->assertSession()->elementExists('css', '#edit-preview article');
+  }
 
-    list ($date, $time) = explode(' ', $when);
-    $this->minkContext->fillField('scheduled_update[form][inline_entity_form][update_timestamp][0][value][date]', $date);
-    $this->minkContext->fillField('scheduled_update[form][inline_entity_form][update_timestamp][0][value][time]', $time);
-    $this->minkContext->selectOption('scheduled_update[form][inline_entity_form][field_moderation_state]', $to_state);
+  /**
+   * Assets that a field exists.
+   *
+   * @param string $locator
+   *   The field ID, name, label, or value.
+   *
+   * @Then I should see a :locator field
+   */
+  public function assertFieldExists($locator) {
+    $this->assertSession()->fieldExists($locator);
+  }
 
-    $this->minkContext->pressButton('Create scheduled update');
-    $this->minkContext->iWaitForAjaxToFinish();
+  /**
+   * Asserts that we are visiting a media entity.
+   *
+   * @Then I should be visiting a media entity
+   */
+  public function assertVisitingMediaEntity() {
+    $this->assertSession()->addressMatches('/\/media\/[0-9]+$/');
+
+    try {
+      $this->assertSession()->statusCodeEquals(200);
+    }
+    catch (UnsupportedDriverActionException $e) {
+      // This isn't a critically important assertion, so don't worry about it.
+    }
+  }
+
+  /**
+   * Sets the absolute path to the directory containing uploadable files.
+   *
+   * @BeforeScenario
+   */
+  public function setFilePath() {
+    $this->minkContext->setMinkParameter('files_path', __DIR__ . '/../../files');
+  }
+
+  /**
+   * Switches out of an iframe into the main window.
+   *
+   * @When I switch to the window
+   */
+  public function switchToWindow() {
+    $this->getSession()->switchToWindow();
+  }
+
+  /**
+   * Asserts that a given field has the disabled attribute.
+   *
+   * @param string $field
+   *   The label, placeholder, ID or name of the field to check.
+   *
+   * @Then the :field field should be disabled
+   *
+   * @throws ExpectationException
+   *   If the field does not have the disabled attribute.
+   */
+  public function assertDisabledField($field) {
+    $element = $this->assertSession()->fieldExists($field);
+    if (!$element->hasAttribute('disabled')) {
+      throw new ExpectationException("Expected '{$field}' field to be disabled.", $this->getSession()->getDriver());
+    }
   }
 
 }

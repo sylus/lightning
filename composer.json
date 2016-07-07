@@ -6,11 +6,20 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require-dev": {
-        "drupal/drupal-extension": "^3.1",
+        "drush/drush": "^9.0",
+        "drupal/drupal-extension": "^3.2",
         "jakoch/phantomjs-installer": "1.9.8",
         "behat/behat": "^3.0",
         "drupal/coder": "8.*",
-        "phing/phing": "^2.14"
+        "phing/phing": "^2.14",
+        "behat/mink": "~1.7",
+        "behat/mink-goutte-driver": "~1.2",
+        "jcalderonzumba/gastonjs": "~1.0.2",
+        "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
+        "mikey179/vfsStream": "~1.2",
+        "phpunit/phpunit": "~4.8",
+        "symfony/css-selector": "~2.8",
+        "drupal/devel": "^8.0.0"
     },
     "config": {
         "bin-dir": "bin/"
@@ -24,7 +33,8 @@
     "scripts": {
         "post-install-cmd": [
             "PhantomInstaller\\Installer::installPhantomJS",
-            "./bin/phing"
+            "@composer drupal-scaffold",
+            "./bin/phing push"
         ],
         "post-update-cmd": [
             "./bin/phing push"
@@ -41,19 +51,43 @@
             ]
         },
         "patches": {
+            "drupal/core": {
+                "Plugin Lazy loading can cause usort warning":
+                "https://www.drupal.org/files/issues/Iterating-through-array--2699157.patch"
+            },
+            "drupal/ctools": {
+                "2747739 - Mega patch":
+                "https://www.drupal.org/files/issues/ctools--8.x-3.0-alpha26--1fe3649.patch"
+            },
+            "drupal/entity_browser": {
+                "2758767 - EB views that sort in descending order are broken by render caching":
+                "https://www.drupal.org/files/issues/entity_browser-view-selection-render-cache-fix.patch",
+                "2738843 - The view widget should support radio buttons":
+                "https://www.drupal.org/files/issues/2738843-4.patch"
+            },
+            "drupal/page_manager": {
+                "2747739 - Mega Patch":
+                "https://www.drupal.org/files/issues/page_manager--alpha23-09e79ff--2747739-3.patch"
+            },
             "drupal/panelizer": {
-                "Generate new UUIDs for displays when switching from default to field storage":
+                "2747739 - Mega Patch":
+                "https://www.drupal.org/files/issues/panelizer--alpha2-1ddfa61--2747739-5.patch",
+                "2701349 - Generate new UUIDs for displays when switching from default to field storage":
                 "https://www.drupal.org/files/issues/2701349-2.patch",
-                "Explicitly set the Panels IPE URL root when saving in Panelizer":
-                "https://www.drupal.org/files/issues/panelizer-ipe-url-root-handling.patch"
+                "2700597 - Explicitly set the Panels IPE URL root when saving in Panelizer":
+                "https://www.drupal.org/files/issues/panelizer-ipe-url-root-handling.patch",
+                "2664682 - Implement admin UI for editing Panelizer defaults":
+                "https://www.drupal.org/files/issues/2664682-49.patch"
             },
             "drupal/panels": {
-                "beta4 to 8eba1a0 - quickedit blocks":
-                "https://www.drupal.org/files/issues/panels--beta4-to-8eba1a0.patch",
+                "2747739 - Mega Patch":
+                "https://www.drupal.org/files/issues/panels--beta4-4c4a3a7--2747739-17--binary.patch",
                 "2667754 - Allow other modules to disable the IPE based on custom logic":
                 "https://www.drupal.org/files/issues/2667754-3.patch",
                 "Bandaid tempstore patch":
-                "https://www.drupal.org/files/issues/bandaid.patch"
+                "https://www.drupal.org/files/issues/bandaid.patch",
+                "2697587 - Wizard API integration":
+                "https://www.drupal.org/files/issues/2697587-48.patch"
             },
             "drupal/scheduled_updates": {
                 "2674874 - Issue saving Schedule Update Type form":
@@ -61,47 +95,54 @@
                 "2720169 - Scheduled Update Type entity should not have canonical link template":
                 "https://www.drupal.org/files/issues/scheduled_updates-no-canonical-link-for-update-type.patch"
             },
+            "drupal/views_infinite_scroll": {
+                "2701881 - View \"No results\" area doesn't appear even view has no results":
+                "https://www.drupal.org/files/issues/no-wrapper-empty-rows-2701881-2.patch"
+            },
             "drupal/workbench_moderation": {
                 "2668006 - Provide logical access control for when IPE should be applied to moderated nodes":
                 "https://www.drupal.org/files/issues/2668006-2.patch"
             },
             "drush/drush": {
                 "Adding composer.json support to make-convert command":
-                "https://github.com/drush-ops/drush/commit/ce82b946d49b09cd33da5ca84feb24a6c35f8f8e.patch"
+                "https://github.com/drush-ops/drush/commit/ce82b946d49b09cd33da5ca84feb24a6c35f8f8e.patch",
+                "The batch table may not exist by the time _drush_backend_batch_process() is called in 8.x-1.x":
+                "https://github.com/drush-ops/drush/commit/c389aebb7d3e26ff0f544684d8b3ec3528107e55.diff"
             }
         }
     },
     "require": {
-        "cweagans/composer-patches": "dev-master",
+        "cweagans/composer-patches": "^1.5.0",
         "composer/installers": "^1.0",
         "drupal/core": "^8.2.0",
-        "drupal/embed": "8.1.0-rc2",
-        "drupal/entity_embed": "8.1.0-alpha1",
-        "drupal/media_entity": "8.1.0",
-        "drupal/media_entity_instagram": "8.1.0",
-        "drupal/media_entity_twitter": "8.1.0",
-        "drupal/media_entity_image": "8.1.0",
-        "drupal/ctools": "8.3.0-alpha25",
+        "drupal/embed": "^8.1.0",
+        "drupal/entity_embed": "^8.1.0",
+        "drupal/media_entity": "^8.1.0",
+        "drupal/media_entity_instagram": "^8.1.0",
+        "drupal/media_entity_twitter": "^8.1.0",
+        "drupal/media_entity_image": "^8.1.0",
+        "drupal/ctools": "8.3.0-alpha26",
         "drupal/panels": "8.3.0-beta4",
         "drupal/page_manager": "8.1.0-alpha23",
         "drupal/panelizer": "8.3.0-alpha2",
         "drupal/scheduled_updates": "8.1.0-alpha5",
-        "drupal/workbench_moderation": "dev-8.x-1.x#47b107185e23df362a18a78e26361e738ffe3ccd",
+        "drupal/workbench_moderation": "8.1.1",
         "drupal/acquia_connector": "^8.1.1",
         "drupal/config_update": "^8.1.1",
         "drupal/features": "^8.3.0",
-        "drupal/inline_entity_form": "8.1.0-alpha6",
+        "drupal/inline_entity_form": "^8.1.0",
         "drupal/metatag": "^8.1.0",
         "drupal/token": "^8.1.0",
-        "drupal/services": "8.4.0-alpha3",
-        "drupal-composer/drupal-scaffold": "^1.2",
-        "drush/drush": "^9.0",
+        "drupal-composer/drupal-scaffold": "^2.0.0",
         "drupal/pathauto": "^8.1.0",
-        "drupal/video_embed_field": "8.1.0-rc8",
-        "drupal/multiversion": "dev-8.x-1.x#67e7d9418ea7172950b9cf4762c5a092c4d9ba6e",
-        "drupal/workspace": "dev-8.x-1.x#9d8202ec7fe724c85781d4b231992cbe50d187b1",
-        "drupal/replication": "dev-8.x-1.x#bc2cb7ad6a97bbd624340b0574abefed7af55fc6",
-        "drupal/entity_storage_migrate": "dev-8.x-1.x#cb4b5bfb09b98b518be51fa2f1d5bf5d377f5bf0",
-        "drupal/key_value": "dev-8.x-1.x#461bc1ca1579ca72e56de3768f02756438053503"
+        "drupal/multiversion": "dev-8.x-1.x",
+        "drupal/workspace": "dev-8.x-1.x",
+        "drupal/replication": "dev-8.x-1.x",
+        "drupal/entity_storage_migrate": "dev-8.x-1.x",
+        "drupal/key_value": "dev-8.x-1.x",
+        "drupal/entity_browser": "8.1.0-alpha5",
+        "drupal/views_infinite_scroll": "8.1.0",
+        "drupal/media_entity_document": "^8.1.0",
+        "drupal/video_embed_field": "^8.1.0"
     }
 }

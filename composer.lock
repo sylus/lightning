@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "db9359e0fdffb3abf0d2692b71fa7039",
-    "content-hash": "4358104f5a6429af201ab9b2fadb2879",
+    "hash": "2629c45eefbb84da7b20d14ed504e7a7",
+    "content-hash": "df63bdd386eb0ce5635085a968ac7d9f",
     "packages": [
         {
             "name": "composer/installers",
@@ -738,12 +738,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal-composer/drupal-core.git",
-                "reference": "9b72b9135410e27bdf402dbadd187c23b0112336"
+                "reference": "3b96191de44f14c810194a20508333a676ee37af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal-composer/drupal-core/zipball/9b72b9135410e27bdf402dbadd187c23b0112336",
-                "reference": "9b72b9135410e27bdf402dbadd187c23b0112336",
+                "url": "https://api.github.com/repos/drupal-composer/drupal-core/zipball/3b96191de44f14c810194a20508333a676ee37af",
+                "reference": "3b96191de44f14c810194a20508333a676ee37af",
                 "shasum": ""
             },
             "require": {
@@ -906,7 +906,7 @@
                 "GPL-2.0+"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2016-07-05 21:35:04"
+            "time": "2016-07-11 13:06:45"
         },
         {
             "name": "drupal/ctools",
@@ -953,15 +953,15 @@
         },
         {
             "name": "drupal/embed",
-            "version": "8.1.0-rc2",
+            "version": "8.1.0-rc3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/embed.git",
-                "reference": "294666ad05ad930003308a5fcd1282cdeb63833a"
+                "reference": "135281965da85d0cfa04f3c0c77ce7821dfab662"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/embed-8.x-1.0-rc2.zip",
+                "url": "https://ftp.drupal.org/files/projects/embed-8.x-1.0-rc3.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -980,7 +980,7 @@
             ],
             "description": "Provides a framework for different types of embeds in text editors.",
             "homepage": "https://www.drupal.org/project/embed",
-            "time": "2016-04-14 01:03:52"
+            "time": "2016-07-10 18:43:18"
         },
         {
             "name": "drupal/entity",
@@ -1142,15 +1142,15 @@
         },
         {
             "name": "drupal/features",
-            "version": "8.3.0-beta5",
+            "version": "8.3.0-beta6",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/features",
-                "reference": "6d23d8e5b3e69c879e4b02c0e6ca52eba44260c6"
+                "reference": "245b7175b971e4239e3ee5685ca7c92942bf8a6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/features-8.x-3.0-beta5.zip",
+                "url": "https://ftp.drupal.org/files/projects/features-8.x-3.0-beta6.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -1177,7 +1177,7 @@
             ],
             "description": "Enables administrators to package configuration into modules.",
             "homepage": "https://www.drupal.org/project/features",
-            "time": "2016-06-09 14:12:34"
+            "time": "2016-07-08 12:53:14"
         },
         {
             "name": "drupal/inline_entity_form",
@@ -1711,35 +1711,28 @@
         },
         {
             "name": "drupal/replication",
-            "version": "8.1.0-alpha2",
+            "version": "dev-replication-filters-ui",
             "source": {
                 "type": "git",
-                "url": "https://git.drupal.org/project/replication.git",
-                "reference": "8d10af8e266bb3cf0ccdd5812946694f8c718b52"
+                "url": "https://github.com/josephdpurcell/drupal-replication.git",
+                "reference": "c9a556a4074984b6474cd4d4e3524a2413f82559"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/replication-8.x-1.0-alpha2.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "drupal/core": "8.*",
-                "drupal/multiversion": "8.*"
+                "url": "https://api.github.com/repos/josephdpurcell/drupal-replication/zipball/c9a556a4074984b6474cd4d4e3524a2413f82559",
+                "reference": "c9a556a4074984b6474cd4d4e3524a2413f82559",
+                "shasum": ""
             },
             "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-8.x-1.x": "8.1.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.drupal-composer.org/downloads/",
             "license": [
                 "GPL-2.0+"
             ],
             "description": "Provides services and entities types so assist with and log content replication.",
             "homepage": "http://drupal.org/project/replication",
-            "time": "2016-06-17 15:06:44"
+            "support": {
+                "source": "https://github.com/josephdpurcell/drupal-replication/tree/replication-filters-ui"
+            },
+            "time": "2016-07-07 14:59:11"
         },
         {
             "name": "drupal/scheduled_updates",
@@ -1935,40 +1928,32 @@
         },
         {
             "name": "drupal/workspace",
-            "version": "8.1.0-alpha2",
+            "version": "dev-replication-filters-ui",
             "source": {
                 "type": "git",
-                "url": "https://git.drupal.org/project/workspace",
-                "reference": "47aa21574eac7b252c8f4c5f8fe348885f39a70b"
+                "url": "https://github.com/josephdpurcell/drupal-workspace.git",
+                "reference": "153ae0cbae28b10415fe512b4d9e3b6f1e56b81e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/workspace-8.x-1.0-alpha2.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "drupal/core": "8.*",
-                "drupal/datetime": "8.*",
-                "drupal/options": "8.*",
-                "drupal/replication": "8.*"
+                "url": "https://api.github.com/repos/josephdpurcell/drupal-workspace/zipball/153ae0cbae28b10415fe512b4d9e3b6f1e56b81e",
+                "reference": "153ae0cbae28b10415fe512b4d9e3b6f1e56b81e",
+                "shasum": ""
             },
             "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-8.x-1.x": "8.1.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.drupal-composer.org/downloads/",
             "license": [
                 "GPL-2.0+"
             ],
-            "description": "Provides the ability to have multiple workspaces on a single site to facilitate things like full-site preview and content staging.",
+            "description": "The workspace module",
             "homepage": "https://www.drupal.org/project/workspace",
             "keywords": [
                 "Drupal"
             ],
-            "time": "2016-06-17 15:07:17"
+            "support": {
+                "issues": "http://drupal.org/project/issues/workspace",
+                "source": "http://cgit.drupalcode.org/workspace"
+            },
+            "time": "2016-07-05 18:27:07"
         },
         {
             "name": "easyrdf/easyrdf",
@@ -7135,6 +7120,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "drupal/workspace": 20,
+        "drupal/replication": 20,
         "drupal/entity_storage_migrate": 20
     },
     "prefer-stable": true,

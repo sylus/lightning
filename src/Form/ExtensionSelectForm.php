@@ -58,13 +58,13 @@ class ExtensionSelectForm extends FormBase {
         'lightning_media' => $this->t('Lightning Media'),
         'lightning_layout' => $this->t('Lightning Layout'),
         'lightning_workflow' => $this->t('Lightning Workflow'),
-        'lightning_preview' => $this->t('Lightning Preview'),
+        'lightning_preview' => $this->t('Lightning Preview (Exprimental)'),
       ],
       '#default_value' => [
         'lightning_media',
         'lightning_layout',
         'lightning_workflow',
-        'lightning_preview',
+        FALSE,
       ],
     ];
 

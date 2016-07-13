@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2629c45eefbb84da7b20d14ed504e7a7",
-    "content-hash": "df63bdd386eb0ce5635085a968ac7d9f",
+    "hash": "e95249585fdccd056184cf0fa48675b5",
+    "content-hash": "26c41eb27ca806c5ee285bf7bc6e9b03",
     "packages": [
         {
             "name": "composer/installers",
@@ -738,12 +738,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal-composer/drupal-core.git",
-                "reference": "3b96191de44f14c810194a20508333a676ee37af"
+                "reference": "0fb5cfa4f433431cb0cb3becff2d03f2e829e117"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal-composer/drupal-core/zipball/3b96191de44f14c810194a20508333a676ee37af",
-                "reference": "3b96191de44f14c810194a20508333a676ee37af",
+                "url": "https://api.github.com/repos/drupal-composer/drupal-core/zipball/0fb5cfa4f433431cb0cb3becff2d03f2e829e117",
+                "reference": "0fb5cfa4f433431cb0cb3becff2d03f2e829e117",
                 "shasum": ""
             },
             "require": {
@@ -906,7 +906,7 @@
                 "GPL-2.0+"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2016-07-11 13:06:45"
+            "time": "2016-07-12 14:24:00"
         },
         {
             "name": "drupal/ctools",
@@ -1442,6 +1442,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-8.x-1.x": "8.1.x-dev"
+                },
+                "patches_applied": {
+                    "2764411 - Tweets embedded in CKEditor do not load when selected from Entity Browser": "https://www.drupal.org/files/issues/2764411_4.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -4915,6 +4918,10 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "9.0.x-dev"
+                },
+                "patches_applied": {
+                    "Adding composer.json support to make-convert command": "https://github.com/drush-ops/drush/commit/ce82b946d49b09cd33da5ca84feb24a6c35f8f8e.patch",
+                    "The batch table may not exist by the time _drush_backend_batch_process() is called in 8.x-1.x": "https://github.com/drush-ops/drush/commit/c389aebb7d3e26ff0f544684d8b3ec3528107e55.diff"
                 }
             },
             "autoload": {

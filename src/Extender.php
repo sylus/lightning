@@ -46,6 +46,17 @@ class Extender {
   }
 
   /**
+   * Returns the list of Lightning Extensions to enable.
+   *
+   * @return string[]
+   *   The modules to enable.
+   */
+  public function getLightningExtensions() {
+    $info = $this->getInfo();
+    return isset($info['lightning_extensions']) ? $info['lightning_extensions'] : [];
+  }
+
+  /**
    * Returns the list of additional modules to enable.
    *
    * @return string[]

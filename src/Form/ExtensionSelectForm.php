@@ -51,19 +51,30 @@ class ExtensionSelectForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state, array &$install_state = NULL) {
     $form['#title'] = $this->t('Extensions');
 
+    $disabled = FALSE;
+    $default_value = [
+      'lightning_media',
+      'lightning_layout',
+      'lightning_workflow',
+    ];
+    if (!empty($this->extender->getLightningExtensions())) {
+      $disabled = TRUE;
+      $default_value = $this->extender->getLightningExtensions();
+      $form['set_by_extender'] = [
+        '#markup' => '<p>Lightning Extensions have been set by the lightning.extend.yml file in your sites directory.</p>',
+      ];
+    }
+
     $form['extensions'] = [
       '#type' => 'checkboxes',
       '#description' => $this->t("You can choose to disable some of Lightning's functionality above. However, it is not recommended."),
+      '#disabled' => $disabled,
       '#options' => [
         'lightning_media' => $this->t('Lightning Media'),
         'lightning_layout' => $this->t('Lightning Layout'),
         'lightning_workflow' => $this->t('Lightning Workflow'),
       ],
-      '#default_value' => [
-        'lightning_media',
-        'lightning_layout',
-        'lightning_workflow',
-      ],
+      '#default_value' => $default_value,
     ];
 
     $form['actions'] = [

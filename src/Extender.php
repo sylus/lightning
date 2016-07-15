@@ -53,7 +53,7 @@ class Extender {
    */
   public function getLightningExtensions() {
     $info = $this->getInfo();
-    return isset($info['lightning_extensions']) ? $info['lightning_extensions'] : [];
+    return isset($info['lightning_extensions']) ? $info['lightning_extensions'] : FALSE;
   }
 
   /**

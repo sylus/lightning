@@ -53,6 +53,8 @@ class Extender {
    */
   public function getLightningExtensions() {
     $info = $this->getInfo();
+    // Return FALSE instead of empty array because empty array means "don't
+    // enable _any_ extensions" in this case.
     return isset($info['lightning_extensions']) ? $info['lightning_extensions'] : FALSE;
   }
 

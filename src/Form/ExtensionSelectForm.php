@@ -60,11 +60,12 @@ class ExtensionSelectForm extends FormBase {
 
     $description = $this->t("You can choose to disable some of Lightning's functionality above. However, it is not recommended.");
 
-    if (is_array($this->extender->getLightningExtensions())) {
+    $yml_lightning_extensions = $this->extender->getLightningExtensions();
+    if (is_array($yml_lightning_extensions)) {
       // Lightning Extensions are defined in the Extender so we set default
       // values according to the Extender, disable the checkboxes, and inform
       // the user.
-      $lightning_extensions = $this->extender->getLightningExtensions();
+      $lightning_extensions = $yml_lightning_extensions;
       $form_disabled = TRUE;
       $description = $this->t('Lightning Extensions have been set by the lightning.extend.yml file in your sites directory and are disabled here as a result.');
     }

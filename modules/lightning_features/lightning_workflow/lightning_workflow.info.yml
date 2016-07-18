@@ -4,6 +4,7 @@ description: Tools to improve your content workflow.
 core: 8.x
 package: Lightning
 dependencies:
+  - diff
   - inline_entity_form
   - lightning_core
   - scheduled_updates

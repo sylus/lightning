@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Contains installation and update code for Lightning Workflow.
+ */
+
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\node\Entity\NodeType;
@@ -28,7 +33,12 @@ function lightning_workflow_install() {
     /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $form_display */
     $form_display = EntityFormDisplay::load('node.page.default');
     if ($form_display) {
-      $weights = array_map(function (array $component) { return $component['weight']; }, $form_display->getComponents());
+      $weights = array_map(
+        function (array $component) {
+          return $component['weight'];
+        },
+        $form_display->getComponents()
+      );
       sort($weights);
       $form_display->setComponent('scheduled_update', [
         'type' => 'inline_entity_form_complex',
@@ -87,6 +97,15 @@ function lightning_workflow_update_8002() {
 }
 
 /**
+ * Installs Diff module.
+ */
+function lightning_workflow_8003() {
+  if (!\Drupal::moduleHandler()->moduleExists('diff')) {
+    \Drupal::service('module_installer')->install(['diff']);
+  }
+}
+
+/**
  * Implements hook_update_dependencies().
  */
 function lightning_workflow_update_dependencies() {
@@ -95,6 +114,6 @@ function lightning_workflow_update_dependencies() {
       8001 => [
         'lightning' => 8002,
       ],
-    ]
+    ],
   ];
 }

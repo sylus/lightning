@@ -5,6 +5,7 @@
  * Contains \MediaLibrarySubContext.
  */
 
+use Acquia\LightningExtension\AwaitTrait;
 use Drupal\DrupalExtension\Context\DrupalSubContextBase;
 use Drupal\DrupalExtension\Context\DrupalSubContextInterface;
 
@@ -12,6 +13,8 @@ use Drupal\DrupalExtension\Context\DrupalSubContextInterface;
  * Contains step definitions for testing the CKEditor media widget.
  */
 class MediaLibrarySubContext extends DrupalSubContextBase implements DrupalSubContextInterface {
+
+  use AwaitTrait;
 
   /**
    * The Mink context.
@@ -77,7 +80,7 @@ class MediaLibrarySubContext extends DrupalSubContextBase implements DrupalSubCo
     $session = $this->getSession();
     $session->switchToWindow();
     $session->executeScript('window.frames.entity_browser_iframe_media_browser.document.forms[0].elements.op.click()');
-    $this->await('!window.frames.entity_browser_iframe_media_browser');
+    $this->awaitExpression('!window.frames.entity_browser_iframe_media_browser');
     $this->minkContext->iWaitForAjaxToFinish();
     $this->awaitElement('form.entity-embed-dialog');
     $session->executeScript('document.querySelector("form.entity-embed-dialog").elements.op[1].click()');
@@ -85,37 +88,11 @@ class MediaLibrarySubContext extends DrupalSubContextBase implements DrupalSubCo
   }
 
   /**
-   * Awaits the presence of an element on the page.
-   *
-   * @param string $selector
-   *   The element's CSS selector.
-   */
-  protected function awaitElement($selector) {
-    $this->await('document.querySelector("' . addslashes($selector) . '")');
-  }
-
-  /**
-   * Waits 10 seconds for a JavaScript condition to be truthy.
-   *
-   * @param string $condition
-   *   The JavaScript condition to wait for.
-   *
-   * @throws \Exception
-   *   If the condition times out.
-   */
-  protected function await($condition) {
-    $done = $this->getSession()->wait(10000, $condition);
-    if ($done == FALSE) {
-      throw new \Exception('JavaScript condition timed out: ' . $condition);
-    }
-  }
-
-  /**
    * Waits for the inline entity form (containing required fields) to exist.
    */
   protected function awaitEntityForm() {
     $this->minkContext->iWaitForAjaxToFinish();
-    $this->await('document.getElementById("ief-target").textContent.length');
+    $this->awaitExpression('document.getElementById("ief-target").textContent.length');
   }
 
   /**

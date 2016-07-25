@@ -5,9 +5,9 @@
  * Contains \LightningSubContext.
  */
 
+use Acquia\LightningExtension\ElementManipulationTrait;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\PyStringNode;
-use Behat\Mink\Exception\ElementNotFoundException;
 use Behat\Mink\Exception\ExpectationException;
 use Behat\Mink\Exception\UnsupportedDriverActionException;
 use Drupal\DrupalExtension\Context\DrupalSubContextBase;
@@ -17,6 +17,8 @@ use Drupal\DrupalExtension\Context\DrupalSubContextInterface;
  * Sub context for Lightning step definitions.
  */
 class LightningSubContext extends DrupalSubContextBase implements DrupalSubContextInterface {
+
+  use ElementManipulationTrait;
 
   /**
    * The Mink context.
@@ -60,21 +62,7 @@ class LightningSubContext extends DrupalSubContextBase implements DrupalSubConte
    * @When I click the :selector element
    */
   public function clickElementBySelector($selector) {
-    $session = $this->getSession();
-
-    $element = $session->getPage()->find('css', $selector);
-    if ($element) {
-      try {
-        $this->scrollToElement($selector);
-      }
-      catch (UnsupportedDriverActionException $e) {
-        // Don't worry about it.
-      }
-      $element->click();
-    }
-    else {
-      throw new ElementNotFoundException($session, 'element', 'css', $selector);
-    }
+    $this->clickSelector($selector);
   }
 
   /**
@@ -210,8 +198,7 @@ class LightningSubContext extends DrupalSubContextBase implements DrupalSubConte
    * @When I scroll to the :selector element
    */
   public function scrollToElement($selector) {
-    $this->getSession()
-      ->executeScript('document.querySelector("' . addslashes($selector) . '").scrollIntoView()');
+    $this->scrollTo($selector);
   }
 
   /**

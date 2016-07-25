@@ -15,7 +15,7 @@ trait AwaitTrait {
    * @param string $expression
    *   The JavaScript expression to await.
    * @param int $timeout
-   *   (optional) How long to wait, in seconds, before timing out.
+   *   (optional) How many seconds to wait before timing out.
    *
    * @throws \Exception
    *   If the expression times out.
@@ -36,7 +36,7 @@ trait AwaitTrait {
    * method if available, otherwise it will wait the full timeout.
    *
    * @param int $timeout
-   *   (optional) How long to wait, in seconds, before timing out.
+   *   (optional) How many seconds to wait before timing out.
    */
   protected function awaitAjax($timeout = 10) {
     $mink_context = $this->getContext(MinkContext::class);
@@ -55,7 +55,7 @@ trait AwaitTrait {
    * @param string $selector
    *   The CSS selector.
    * @param int $timeout
-   *   (optional) How long to wait, in seconds, before timing out.
+   *   (optional) How many seconds to wait before timing out.
    */
   protected function awaitElement($selector, $timeout = 10) {
     $this->awaitExpression('document.querySelector("' . addslashes($selector) . '")', $timeout);

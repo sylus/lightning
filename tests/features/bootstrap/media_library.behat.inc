@@ -30,6 +30,61 @@ class MediaLibrarySubContext extends DrupalSubContextBase implements DrupalSubCo
   }
 
   /**
+   * Opens the media browser, obviously.
+   *
+   * @param string $button
+   *   (optional) The embed button ID.
+   *
+   * @When I open the media browser
+   */
+  public function openMediaBrowser($button = 'media_browser') {
+    /** @var \CkEditorSubContext $ck_context */
+    $ck_context = $this->getContext('\CkEditorSubContext');
+    $ck_context->execute('editdrupalentity', NULL, ['id' => $button]);
+
+    $this->minkContext->iWaitForAjaxToFinish();
+    // I tried awaiting, but it didn't seem to work.
+    sleep(3);
+    $this->getSession()->switchToIFrame('entity_browser_iframe_' . $button);
+  }
+
+  /**
+   * Selects an item from the media library.
+   *
+   * @param int $n
+   *   The one-based index of the item to select.
+   *
+   * @When I select item :n in the media browser
+   */
+  public function selectNthItem($n) {
+    sleep(5);
+    $row = floor($n / 4) + 1;
+    $column = ($n % $row) + 1;
+
+    $selector = '.view-media .row-' . $row . ' .col-' . $column;
+    /** @var \LightningSubContext $lightning */
+    $lightning = $this->getContext('\LightningSubContext');
+    $lightning->clickElementBySelector($selector);
+  }
+
+  /**
+   * Completes the media browser selection.
+   *
+   * @When I complete the media browser selection
+   */
+  public function completeSelection() {
+    /** @var \Behat\Mink\Session $session */
+    $session = $this->getSession();
+    $session->switchToWindow();
+    $session->executeScript('window.frames.entity_browser_iframe_media_browser.document.forms[0].elements.op.click()');
+    $this->await('!window.frames.entity_browser_iframe_media_browser');
+    $this->minkContext->iWaitForAjaxToFinish();
+    $this->awaitElement('form.entity-embed-dialog');
+    $session->executeScript('document.querySelector("form.entity-embed-dialog").elements.op[1].click()');
+    $this->minkContext->iWaitForAjaxToFinish();
+  }
+
+  /**
    * Awaits the presence of an element on the page.
    *
    * @param string $selector

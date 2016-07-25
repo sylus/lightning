@@ -27,4 +27,19 @@ class AwaitContext extends DrupalSubContextBase {
     $this->awaitElement($selector, $timeout);
   }
 
+  /**
+   * Waits for an iFrame to exist.
+   *
+   * @param string $frame
+   *   The iFrame's name.
+   * @param int $timeout
+   *   (optional) How many seconds to wait before timing out.
+   *
+   * @When I wait for the :frame frame to appear
+   * @When I wait :timeout seconds for the :frame frame to appear
+   */
+  public function awaitFrame($frame, $timeout = 10) {
+    $this->awaitExpression('window.frames["' . $frame . '"]', $timeout);
+  }
+
 }

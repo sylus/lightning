@@ -37,9 +37,11 @@ class AwaitContext extends DrupalSubContextBase {
    *
    * @When I wait for the :frame frame to appear
    * @When I wait :timeout seconds for the :frame frame to appear
+   *
+   * @Then the :frame frame should exist
    */
-  public function awaitFrame($frame, $timeout = 10) {
-    $this->awaitExpression('window.frames["' . $frame . '"]', $timeout);
+  public function awaitFrameStep($frame, $timeout = 10) {
+    $this->awaitFrame($frame, $timeout);
   }
 
 }

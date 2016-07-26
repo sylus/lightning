@@ -37,6 +37,28 @@ trait TableTrait {
   }
 
   /**
+   * Asserts the absence of a table row that passes a filter function.
+   *
+   * @param string $table_selector
+   *   The table's CSS selector.
+   * @param callable $filter
+   *   The filter function.
+   *
+   * @throws \Behat\Mink\Exception\ExpectationException
+   *   If any rows passed the filter function.
+   */
+  protected function assertNotTableRow($table_selector, callable $filter) {
+    $rows = $this->getTableRows($table_selector, $filter);
+
+    if ($rows) {
+      throw new ExpectationException(
+        'Row(s) in ' . $table_selector . ' matched filter function.',
+        $this->getSession()->getDriver()
+      );
+    }
+  }
+
+  /**
    * Returns all rows in a table, optionally filtered by a function.
    *
    * @param string $table_selector

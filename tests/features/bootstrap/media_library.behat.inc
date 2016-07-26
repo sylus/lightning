@@ -47,7 +47,7 @@ class MediaLibrarySubContext extends DrupalSubContextBase implements DrupalSubCo
 
     $this->awaitAjax();
     // I tried awaiting, but it didn't seem to work.
-    sleep(3);
+    sleep(5);
     $this->getSession()->switchToIFrame('entity_browser_iframe_' . $button);
   }
 

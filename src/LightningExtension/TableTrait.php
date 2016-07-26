@@ -24,30 +24,14 @@ trait TableTrait {
    *   If no rows passed the filter function.
    */
   protected function assertTableRow($table_selector, callable $filter) {
-    $row = $this->getTableRow($table_selector, $filter);
+    $rows = $this->getTableRows($table_selector, $filter);
 
-    if (empty($row)) {
+    if (empty($rows)) {
       throw new ExpectationException(
         'No rows in ' . $table_selector . ' matched filter function.',
         $this->getSession()->getDriver()
       );
     }
-    return $row;
-  }
-
-  /**
-   * Returns the first row in a table that passes a filter function.
-   *
-   * @param string $table_selector
-   *   The table's CSS selector.
-   * @param callable $filter
-   *   The filter function.
-   *
-   * @return \Behat\Mink\Element\NodeElement|false
-   *   The first row to pass the filter function, or false if no rows passed.
-   */
-  protected function getTableRow($table_selector, callable $filter) {
-    $rows = $this->getTableRows($table_selector, $filter);
 
     return reset($rows);
   }

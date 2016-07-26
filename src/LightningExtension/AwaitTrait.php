@@ -21,10 +21,9 @@ trait AwaitTrait {
    *   If the expression times out.
    */
   protected function awaitExpression($expression, $timeout = 10) {
-    $timeout *= 1000;
+    $done = $this->getSession()->wait($timeout * 1000, $expression);
 
-    $done = $this->getSession()->wait($timeout, $expression);
-    if ($done == FALSE) {
+    if (!$done) {
       throw new \Exception('JavaScript expression timed out: ' . $expression);
     }
   }

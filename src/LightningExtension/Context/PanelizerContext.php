@@ -17,7 +17,7 @@ class PanelizerContext extends DrupalSubContextBase {
   /**
    * Saves the current Panels layout as a custom layout.
    *
-   * @When I the layout as the default
+   * @When I save the layout as the default
    */
   public function saveDefaultLayout() {
     $this->saveLayout('default');

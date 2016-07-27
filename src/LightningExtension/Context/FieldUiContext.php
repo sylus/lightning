@@ -104,7 +104,7 @@ class FieldUiContext extends DrupalSubContextBase {
     $form = $this->openFieldSettings($id_or_label);
 
     foreach ($settings->getHash() as $key => $value) {
-      $element = $form->find('css', '[name$="[settings_edit_form][settings][' . $value . ']"]');
+      $element = $form->find('css', '[name$="[settings_edit_form][settings][' . $key . ']"]');
 
       if ($element) {
         if ($element->getTagName() == 'input' && $element->getAttribute('type') == 'checkbox') {

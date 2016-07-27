@@ -74,6 +74,7 @@ Feature: Media browser
     And I wait 5 seconds
     And I press "Save"
     And I click "Edit draft"
+    And I wait 10 seconds
     And I open the media browser
     And I wait for AJAX to finish
     Then I should see a "form.entity-browser-form" element

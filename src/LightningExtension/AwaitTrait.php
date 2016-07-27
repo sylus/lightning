@@ -2,6 +2,7 @@
 
 namespace Acquia\LightningExtension;
 
+use Acquia\LightningExtension\Exception\TimeoutException;
 use Drupal\DrupalExtension\Context\MinkContext;
 
 /**
@@ -17,14 +18,14 @@ trait AwaitTrait {
    * @param int $timeout
    *   (optional) How many seconds to wait before timing out.
    *
-   * @throws \Exception
+   * @throws TimeoutException
    *   If the expression times out.
    */
   protected function awaitExpression($expression, $timeout = 10) {
-    $done = $this->getSession()->wait($timeout * 1000, $expression);
+    $victory = $this->getSession()->wait($timeout * 1000, $expression);
 
-    if (!$done) {
-      throw new \Exception('JavaScript expression timed out: ' . $expression);
+    if (empty($victory)) {
+      throw new TimeoutException($expression);
     }
   }
 

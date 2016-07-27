@@ -2,9 +2,9 @@
 
 namespace Acquia\LightningExtension\Context;
 
-use Acquia\LightningExtension\AwaitTrait;
+use Acquia\LightningExtension\CkEditorTrait;
+use Acquia\LightningExtension\Exception\TimeoutException;
 use Behat\Mink\Exception\ExpectationException;
-use Drupal\Component\Serialization\Json;
 use Drupal\DrupalExtension\Context\DrupalSubContextBase;
 
 /**
@@ -12,25 +12,7 @@ use Drupal\DrupalExtension\Context\DrupalSubContextBase;
  */
 class CkEditorContext extends DrupalSubContextBase {
 
-  use AwaitTrait;
-
-  /**
-   * Returns the name of a CKEditor instance's iFrame.
-   *
-   * @param string $instance
-   *   The instance ID.
-   *
-   * @return string
-   *   The iFrame name.
-   */
-  protected function getFrame($instance) {
-    $frame = uniqid('ckeditor_', TRUE);
-
-    $this->getSession()
-      ->executeScript('CKEDITOR.instances["' . $instance . '"].window.$.frameElement.name = "' . $frame . '"');
-
-    return $frame;
-  }
+  use CkEditorTrait;
 
   /**
    * Inserts text or HTML into a CKEditor.
@@ -44,10 +26,7 @@ class CkEditorContext extends DrupalSubContextBase {
    * @When I insert :text into CKEditor :instance
    */
   public function insert($text, $instance = NULL) {
-    $instance = $instance ?: $this->getDefaultInstance();
-
-    $this->getSession()
-      ->executeScript('CKEDITOR.instances["' . $instance . '"].insertHtml("' . $text . '")');
+    $this->insertEditorText($instance ?: $this->getDefaultInstance(), $text);
   }
 
   /**
@@ -69,14 +48,14 @@ class CkEditorContext extends DrupalSubContextBase {
 
     if ($id) {
       try {
-        $this->awaitExpression('CKEDITOR.instances["' . $id . '"]');
+        $this->awaitEditor($id);
       }
-      catch (\Exception $e) {
+      catch (TimeoutException $e) {
         throw new ExpectationException('CKEditor ' . $id . ' does not exist.', $driver, $e);
       }
     }
     else {
-      $instances = $this->getInstances();
+      $instances = $this->getEditorInstances();
 
       if (empty($instances)) {
         throw new ExpectationException('No CKEditor instances exist.', $driver);
@@ -99,7 +78,7 @@ class CkEditorContext extends DrupalSubContextBase {
    * @Then CKEditor :instance should contain :text
    */
   public function assertContains($text, $instance = NULL) {
-    $contents = $this->getContents($instance);
+    $contents = $this->getEditorContents($instance ?: $this->getDefaultInstance());
 
     if (strpos($contents, $text) === FALSE) {
       throw new ExpectationException(
@@ -124,7 +103,7 @@ class CkEditorContext extends DrupalSubContextBase {
    * @Then CKEditor :instance should match :expression
    */
   public function assertMatch($expression, $instance = NULL) {
-    $contents = $this->getContents($instance);
+    $contents = $this->getEditorContents($instance ?: $this->getDefaultInstance());
 
     if (!preg_match($expression, $contents)) {
       throw new ExpectationException(
@@ -151,31 +130,11 @@ class CkEditorContext extends DrupalSubContextBase {
    * @When I execute the :command command in CKEditor :instance
    */
   public function execute($command, $instance = NULL, array $data = NULL) {
-    $instance = $instance ?: $this->getDefaultInstance();
-
-    $js = 'CKEDITOR.instances["' . $instance . '"].execute("' . $command . '"';
-    if (isset($data)) {
-      $js .= ', ' . Json::encode($data);
-    }
-    $js .= ')';
-
-    return $this->getSession()->evaluateScript($js);
-  }
-
-  /**
-   * Returns the contents of a CKEditor instance.
-   *
-   * @param string $instance
-   *   (optional) The instance ID.
-   *
-   * @return string
-   *   The editor's contents.
-   */
-  protected function getContents($instance = NULL) {
-    $instance = $instance ?: $this->getDefaultInstance();
-
-    return $this->getSession()
-      ->evaluateScript('CKEDITOR.instances["' . $instance . '"].getData()');
+    return $this->executeEditorCommand(
+      $instance ?: $this->getDefaultInstance(),
+      $command,
+      $data
+    );
   }
 
   /**
@@ -185,21 +144,8 @@ class CkEditorContext extends DrupalSubContextBase {
    *   The instance ID.
    */
   protected function getDefaultInstance() {
-    $instances = $this->getInstances();
+    $instances = $this->getEditorInstances();
     return reset($instances);
-  }
-
-  /**
-   * Returns all CKEditor instance IDs.
-   *
-   * @return string[]
-   *   The instance IDs.
-   */
-  protected function getInstances() {
-    $instances = $this->getSession()
-      ->evaluateScript('Object.keys(CKEDITOR.instances).join(",")');
-
-    return explode(',', $instances);
   }
 
 }

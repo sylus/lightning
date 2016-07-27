@@ -2,6 +2,7 @@
 
 namespace Acquia\LightningExtension\Context;
 
+use Acquia\LightningExtension\AwaitTrait;
 use Behat\Mink\Exception\ExpectationException;
 use Drupal\Component\Serialization\Json;
 use Drupal\DrupalExtension\Context\DrupalSubContextBase;
@@ -10,6 +11,8 @@ use Drupal\DrupalExtension\Context\DrupalSubContextBase;
  * Contains steps for interacting with CKEditor instances.
  */
 class CkEditorContext extends DrupalSubContextBase {
+
+  use AwaitTrait;
 
   /**
    * Returns the name of a CKEditor instance's iFrame.
@@ -62,15 +65,22 @@ class CkEditorContext extends DrupalSubContextBase {
    * @Then CKEditor :id should be present
    */
   public function assertInstance($id = NULL) {
-    $instances = $this->getInstances();
-
     $driver = $this->getSession()->getDriver();
 
-    if ($id && !in_array($id, $instances)) {
-      throw new ExpectationException('CKEditor ' . $id . ' does not exist.', $driver);
+    if ($id) {
+      try {
+        $this->awaitExpression('CKEDITOR.instances["' . $id . '"]');
+      }
+      catch (\Exception $e) {
+        throw new ExpectationException('CKEditor ' . $id . ' does not exist.', $driver, $e);
+      }
     }
-    elseif (empty($instances)) {
-      throw new ExpectationException('No CKEditor instances exist.', $driver);
+    else {
+      $instances = $this->getInstances();
+
+      if (empty($instances)) {
+        throw new ExpectationException('No CKEditor instances exist.', $driver);
+      }
     }
   }
 

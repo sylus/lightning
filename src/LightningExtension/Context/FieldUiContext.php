@@ -4,6 +4,7 @@ namespace Acquia\LightningExtension\Context;
 
 use Acquia\LightningExtension\AwaitTrait;
 use Acquia\LightningExtension\TableTrait;
+use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Element\NodeElement;
 use Drupal\DrupalExtension\Context\DrupalSubContextBase;
 
@@ -79,12 +80,44 @@ class FieldUiContext extends DrupalSubContextBase {
     $row = $this->assertFieldPresent($id_or_label);
 
     $this->assertSession()
-      ->elementExists('css', 'input[name$="_edit_settings"]', $row)
+      ->elementExists('css', 'input[name$="_settings_edit"]', $row)
       ->press();
 
     $this->awaitAjax();
 
     return $row->find('css', '.field-plugin-settings-edit-form');
+  }
+
+  /**
+   * Configures a field's widget or display settings.
+   *
+   * @param string $id_or_label
+   *   The field's ID or label.
+   * @param \Behat\Gherkin\Node\TableNode $settings
+   *   The configuration to apply, as a single-row table where the header row
+   *   contains the configuration keys and the first row contains the
+   *   configuration values.
+   *
+   * @When I configure the :id_or_label field with settings:
+   */
+  public function configureField($id_or_label, TableNode $settings) {
+    $form = $this->openFieldSettings($id_or_label);
+
+    foreach ($settings->getHash() as $key => $value) {
+      $element = $form->find('css', '[name$="[settings_edit_form][settings][' . $value . ']"]');
+
+      if ($element) {
+        if ($element->getTagName() == 'input' && $element->getAttribute('type') == 'checkbox') {
+          $value ? $element->check() : $element->uncheck();
+        }
+        else {
+          $element->setValue($value);
+        }
+      }
+    }
+    $form->pressButton('Update');
+    $this->awaitAjax();
+    $this->getSession()->getPage()->pressButton('Save');
   }
 
 }

@@ -12,6 +12,24 @@ use Drupal\DrupalExtension\Context\DrupalSubContextBase;
 class CkEditorContext extends DrupalSubContextBase {
 
   /**
+   * Returns the name of a CKEditor instance's iFrame.
+   *
+   * @param string $instance
+   *   The instance ID.
+   *
+   * @return string
+   *   The iFrame name.
+   */
+  protected function getFrame($instance) {
+    $frame = uniqid('ckeditor_', TRUE);
+
+    $this->getSession()
+      ->executeScript('CKEDITOR.instances["' . $instance . '"].window.$.frameElement.name = "' . $frame . '"');
+
+    return $frame;
+  }
+
+  /**
    * Inserts text or HTML into a CKEditor.
    *
    * @param string $text

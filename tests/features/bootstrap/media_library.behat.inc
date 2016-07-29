@@ -71,6 +71,29 @@ class MediaLibrarySubContext extends DrupalSubContextBase implements DrupalSubCo
   }
 
   /**
+   * Waits for a JavaScript condition to become truthy.
+   *
+   * @param string $expression
+   *   The JavaScript expression to wait for.
+   */
+  protected function awaitExpression($expression) {
+    $this->getSession()->wait(10000, $expression);
+  }
+
+  /**
+   * Waits for an element to exist.
+   *
+   * @param string $selector
+   *   The element's CSS selector.
+   * @param int $timeout
+   *   How many seconds to wait before timing out.
+   */
+  protected function awaitElement($selector, $timeout = 10) {
+    $this->getSession()
+      ->wait($timeout * 1000, 'document.querySelector("' . addslashes($selector) . '")');
+  }
+
+  /**
    * Completes the media browser selection.
    *
    * @When I complete the media browser selection
@@ -81,6 +104,7 @@ class MediaLibrarySubContext extends DrupalSubContextBase implements DrupalSubCo
     $session->switchToWindow();
     $session->executeScript('window.frames.entity_browser_iframe_media_browser.document.forms[0].elements.op.click()');
     $this->awaitExpression('!window.frames.entity_browser_iframe_media_browser');
+
     $this->awaitAjax();
     $this->awaitElement('form.entity-embed-dialog');
     $session->executeScript('document.querySelector("form.entity-embed-dialog").elements.op[1].click()');

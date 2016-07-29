@@ -94,9 +94,8 @@ class FieldUiContext extends DrupalSubContextBase {
    * @param string $id_or_label
    *   The field's ID or label.
    * @param \Behat\Gherkin\Node\TableNode $settings
-   *   The configuration to apply, as a single-row table where the header row
-   *   contains the configuration keys and the first row contains the
-   *   configuration values.
+   *   The configuration to apply, as a two-row table where the first row has
+   *   the keys and the second row has the values.
    *
    * @When I configure the :id_or_label field with settings:
    */
